@@ -1,0 +1,17 @@
+.pgaw:Help.f.t insert end "
+There could be several reasons why your connection attempts fail:
+
+1. The simplest reason would be an incorrect username or password.  Just as easy to mistype would be the database and host names.
+
+2. You might not have permissions to connect to the database.  Try looking at the pg_hba.conf file on the server to see if it grants you enough permissions from your host.  Usually this file is defaulted to only allow connections from localhost.
+
+3. If it's a UNICODE error, you will need to recompile PostgreSQL from source.  Some linux distros include a buggy libpgtcl.so that needs replacing.  Or, instead of recompiling, try the -pgintcl command line option.
+
+4. If you are connecting over a network, it may be the case that the database server was not started with the -i option, which is needed to allow TCP/IP connections.
+
+5. Your connection state data might be stale.  Try removing the ~/.pgaccess/connections file and re-starting PgAccess.
+
+6. If your database is v7.4 or greater, you will need to use the version 3 frontend/backend protocol.  Try the -pgintcl3 command line option to use the one provided with PgAccess.
+
+If the above didn't help you, please send email to support@pgaccess.org or visit http://www.pgaccess.org
+"

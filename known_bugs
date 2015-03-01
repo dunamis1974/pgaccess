@@ -1,0 +1,3 @@
+Known bugs (fixes in the next release):
+
+    #30: concurrent record edits by different users ignored in table view

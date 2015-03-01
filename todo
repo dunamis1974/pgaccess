@@ -1,0 +1,57 @@
+Things that have to be done in the near future:
+
+Translations:
+    * use of the *intlmsg* function in every place
+    * translation in the different languages
+
+Forms:
+    * query widget: return value of the open procedure that shows if the query
+    finished with or without error (good for error handling) -bartusl
+    * new widgets -bartusl
+    * pack and grid arangements -bartusl
+    * convert more widgets to BWidgets -cmaj
+    * create new "formdata" column in the pga_forms table to store the formdata
+    separately from the formsource. The formdata can be easily lost. -bartusl
+
+Open database form:
+    * list of the available databases and let the user choose one -bartusl
+
+Reports:
+    * add grouping and sorting -cmaj
+
+Syntax highlight:
+    * refresh highlight on insert or delete -bartusl
+
+Visual Query Builder:
+    * needs to be adopted by someone and kept up-to-date -cmaj
+
+Icons:
+    * add more of them across the app for a more consistent look -cmaj
+
+Library procedures (that can be used in the pgaccess API):
+    * sort of API::intlmsg for multiple language support (pga_ml_main, pga_ml_translations table?)
+    with -quiet/noquiet switches to alert when translation is not found -bartusl
+    * multilanguage help files support (pgaccess style) -bartusl
+
+Other features:
+    * short label for the new/open/design/... icons that can be hidden eventualy -bartusl
+    * support for other postgresql objects: -bartusl
+	- triggers
+	- aggregates
+	- foreign keys
+	- ?
+    * drop database support -bartusl
+    * respect user preferences, pg/pga tables, fonts, etc. -cmaj
+	
+Functions:
+    * run function after setting up the parameter list -bartusl
+    * copy functions -bartusl
+
+Documentation:
+    * source code documentation -bartusl
+    * API documentation -bartusl    
+    * tutorials -bartusl
+
+Other:
+    * separate the required packages from the source
+    and create dependencies -bartusl

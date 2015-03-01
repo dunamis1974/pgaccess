@@ -1,0 +1,26 @@
+\subsection{CLOSE}
+Frees the resources associated with an open cursor.
+After the cursor is closed, no subsequent operations are allowed on it.
+A cursor should be closed when it is no longer needed.
+An implicit close is executed for every open cursor when a transaction is terminated by
+\htmlref{COMMIT}{commit}
+or
+\htmlref{ROLLBACK}{rollback}
+.
+
+\begin{description}
+
+\item[Synopsis]
+CLOSE cursor
+
+\item[Usage]
+Close the cursor liahona:
+\textit{CLOSE liahona;}
+
+\item[Compatibility]
+SQL92: CLOSE is fully compatible with SQL92
+
+\item[Notes]
+Postgres does not have an explicit OPEN cursor statement; a cursor is considered open when it is declared. Use the DECLARE statement to declare a cursor.
+
+\end{description}

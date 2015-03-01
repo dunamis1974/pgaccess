@@ -1,0 +1,14 @@
+\section{Scripts}
+The \emph{Scripts} tab allows for the creation of user-defined Tcl code to be 
+executed from within \htmlref{Forms}{forms} as a way to reduce the code inside 
+of the forms themselves. These snippets should be designed to exist within a 
+user-defined namespace, and either create a bunch of Tcl procs to be run from 
+a form or provide functionality for being run from a form directly, via 
+\texttt{::Scripts::execute my\_cool\_script}.
+
+Scripts are cached on the client to reduce load on the database server, but 
+if you modify a script it will be re-loaded to reflect your updates.  However, 
+the scripts will \emph{not} be refreshed for persons connecting to the database 
+from other machines. They will need to stop and restart PgAccess before the 
+script changes take effect.
+

@@ -1,0 +1,90 @@
+#==========================================================
+# PgAccess on OSX
+#==========================================================
+
+
+#==========================================================
+# The following worked for Adam Witney.  Thanks, Adam!
+# MacOSX 10.2.1
+#==========================================================
+
+To run PgAccess on MacOSX 10.2.1 the libpgtcl needs to be compiled as a dynamic library. This can be done manually by:
+
+cd <path to>/postgresql-7.2.2/src/interfaces/libpgtcl
+
+make -C ../../../src/interfaces/libpq all
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtcl.o pgtcl.c
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtclCmds.o pgtclCmds.c
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtclId.o pgtclId.c
+
+ar cr libpgtcl.a `lorder pgtcl.o pgtclCmds.o pgtclId.o | tsort`
+ranlib libpgtcl.a
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -flat_namespace -dynamiclib -undefined suppress pgtcl.o pgtclCmds.o pgtclId.o -L../../../src/interfaces/libpq -lpq -o libpgtcl.2.2.dylib
+
+(Note, the last line is the only thing changed from the normal procedure. This could probably be modified in the makefile, but I don't know how to do it!)
+
+Then:
+
+ln -s libpgtcl.2.2.dylib libpgtcl.dylib
+
+then move the libpgtcl.dylib into your postgresql library path
+
+Everything else for PgAccess is installed as for other Unix.
+
+
+#==========================================================
+# Unfortunately, that didn't work 'exactly' for Tony Grant.
+# MacOSX 10.2.3
+#==========================================================
+
+Provided in the dylib/ folder is a pre-compiled libpgtcl.dylib for use on MacOSX 10.2.3, with support for Tcl/Tk 8.4.1 from the Apple downloads, and PostgreSQL 7.3 from http://www.entropy.ch
+
+Here's Tony's instructions, which are also on the http://www.pgaccess.org wiki:
+
+Requires PostgreSQL 7.3 package from www.entropy.ch, Tcl/tk 8.4.1 from Apple downloads and the PostgreSQL 7.3 source from your local mirror. Of course you also need the Developper tools installed.
+
+To run PgAccess on MacOSX? 10.2.3 the libpgtcl needs to be compiled as a dynamic library. This can be done manually by:
+
+cd <path to>/postgresql-7.3/src                            # I untarred the source into my home directory
+./configure --without_readline                             # required if you don't have the readline utility installed
+cd <path to>/postgresql-7.3/src/interfaces/libpgtcl
+
+make -C ../../../src/interfaces/libpq all
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtcl.o pgtcl.c
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtclCmds.o pgtclCmds.c
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -I../../../src/interfaces/libpq -I../../../src/include -c -o pgtclId.o pgtclId.c
+
+ar cr libpgtcl.a `lorder pgtcl.o pgtclCmds.o pgtclId.o | tsort`
+ranlib libpgtcl.a
+
+gcc -traditional-cpp -g -O2 -Wall -Wmissing-prototypes -Wmissing-declarations -flat_namespace -dynamiclib -undefined suppress pgtcl.o pgtclCmds.o pgtclId.o -L../../../src/interfaces/libpq -lpq -o libpgtcl.2.2.dylib
+
+(Note, the last line is the only thing changed from the normal procedure. This could probably be modified in the makefile, but I don't know how to do it!)
+
+Then:
+
+mv <path to>/postgresql-7.3/src/interfaces/libpgtcl/libpgtcl.2.2.dylib /usr/local/pgsql/include
+cd /usr/local/pgsql/include
+ln -s libpgtcl.2.2.dylib /usr/lib/libpgtcl.dylib
+
+Everything else for PgAccess is installed as for other Unix. Mine is in /Applications/pgaccess. You can dispose of the source directory once you have moved the library files.
+
+Open a terminal
+
+cd /Applications/pgaccess         # or wherever you have installed pgaccess
+wish pgaccess.tcl &
+
+
+#==========================================================
+# IF THAT DIDN'T WORK
+#==========================================================
+
+PgAccess now can run without the shared library, using a pure Tcl-PostgreSQL interface, pgin.tcl.  You can use it from the command line with the -pgintcl switch.  Alternatively, if your shared library fails to load, the pgin.tcl code will be used automatically.
+

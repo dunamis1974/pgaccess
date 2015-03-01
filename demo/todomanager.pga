@@ -1,0 +1,172 @@
+
+--
+-- PgAccess PgAckage
+--
+
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('frm_tasks','{ftask 16 {#
+# give a proc to use for updating the task
+#
+proc ::DataControl(.ftask.qry)::updateTask {} {
+	set sql \"
+		UPDATE tbl_task
+			 SET notes=\'$::DataSet(.ftask.qry,notes)\',
+					duedate=\'$::DataSet(.ftask.qry,duedate)\',
+					startstamp=\'$::DataSet(.ftask.qry,startstamp)\'
+			WHERE name=\'$::DataSet(.ftask.qry,name)\'\"
+	sql_exec noquiet $sql
+}
+
+
+#
+# this makes adding a task easier
+#
+proc ::DataControl(.ftask.qry)::addTask {} {
+	set sql \"
+		INSERT INTO tbl_task (name,notes,duedate,startstamp)
+				VALUES (\'$::DataSet(.ftask.qry,name)\',\'$::DataSet(.ftask.qry,notes)\',\'$::DataSet(.ftask.qry,duedate)\',current_timestamp)\"
+	sql_exec noquiet $sql
+}
+
+
+#
+# hooray, the task is done
+#
+proc ::DataControl(.ftask.qry)::doneTask {} {
+	set sql \"
+		UPDATE tbl_task
+			SET stopstamp=current_timestamp
+		WHERE name=\'$::DataSet(.ftask.qry,name)\'\"
+	sql_exec noquiet $sql
+}
+
+
+#
+# show just one task
+#
+proc ::DataControl(.ftask.qry)::showTask {} {
+
+	namespace eval ::DataControl(.ftask.qry) {
+
+		set cursel [.ftask.listbox_names get [lindex [.ftask.listbox_names curselection] 0]]
+
+		setSQL \"qry_one_task\"
+		setVars \"{taskname {$cursel}}\"
+		open
+		updateDataSet
+
+	}
+
+}
+
+
+#
+# reload the list box
+#
+proc ::DataControl(.ftask.qry)::reloadTasks {} {
+	
+	namespace eval ::DataControl(.ftask.qry) {
+
+		# change the SQL to only show incomplete tasks
+		setSQL \"qry_started_tasks\"
+		open
+		updateDataSet
+
+		# list all these tasks in the list box
+		fill .ftask.listbox_names name
+
+		close
+	}
+
+}
+
+
+#
+# make the listbox show the task on a double click
+#
+bind .ftask.listbox_names <Double-Button-1> {
+	::DataControl(.ftask.qry)::showTask
+}
+
+
+#
+# helper key bindings
+#
+
+bind .ftask <Key-F8> {
+	::DataControl(.ftask.qry)::addTask
+	::DataControl(.ftask.qry)::reloadTasks
+}
+
+bind .ftask <Key-F7> {
+	::DataControl(.ftask.qry)::clearDataSet
+	focus .ftask.entry_name
+}
+
+bind .ftask <Key-F9> {
+	::DataControl(.ftask.qry)::updateTask
+	::DataControl(.ftask.qry)::reloadTasks
+}
+
+bind .ftask <Key-F10> {
+	::DataControl(.ftask.qry)::doneTask
+	::DataControl(.ftask.qry)::reloadTasks
+}
+
+bind .ftask <Key-F1> {
+	set msg \"F7 - clear - do this before adding a new todo item
+F8 - add - make sure each todo item has a unique name
+F9 - update - use if you need to change the notes on a task
+F10 - done - when the task is complete you eliminate it from the list
+F1 - help - there you are\"
+	tk_messageBox -title Help -message $msg -parent .ftask
+}
+
+# make sure we can die
+bind .ftask <Destroy> {
+	exit
+}
+
+::DataControl(.ftask.qry)::clearDataSet
+::DataControl(.ftask.qry)::reloadTasks
+} 280x260+159+126 #000099 left_ptr {DataSet(.ftask.qry,name) DataSet(.ftask.qry,notes) DataSet(.ftask.qry,duedate) DataSet(.ftask.qry,startstamp) DataSet(.ftask.qry,stopstamp)}} {listbox listbox_names {20 40 260 140} {} listbox1 {} {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {query qry {0 50 20 70} qry_all_tasks query3 {} {} flat #d9d9d9 #d9d9d9 1 n center l left_ptr false none {} {}} {entry entry_name {20 170 170 190} {} entry8 DataSet(.ftask.qry,name) {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {entry entry_duedate {180 170 260 190} {} entry6 DataSet(.ftask.qry,duedate) {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {entry entry_notes {20 220 260 240} {} entry9 DataSet(.ftask.qry,notes) {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label10 {20 200 260 215} {} description {} {} flat #ffffff #0000ff 1 n center l left_ptr false none {} {}} {label label11 {20 150 170 165} {} name {} {} flat #ffffff #0000ff 1 n center l left_ptr false none {} {}} {label label12 {180 150 260 165} {} {due date} {} {} flat #ffffff #0000ff 1 n center l left_ptr false none {} {}} {label label13 {0 0 280 30} {} {TODO LIST --- F1 FOR HELP} {} {} flat #ffffff #0000ff 1 b center l left_ptr false none {} {}} {label label14 {0 250 280 260} {} {} {} {} flat #000000 #0000ff 1 b center l left_ptr false none {} {}} {label label15 {0 30 10 250} {} {} {} {} flat #000000 #0000ff 1 b center l left_ptr false none {} {}} {label label16 {270 30 280 250} {} {} {} {} flat #000000 #0000ff 1 b center l left_ptr false none {} {}}');
+-- PGA
+
+            INSERT INTO pga_scripts (scriptsource, scriptname)
+                 VALUES ('::Forms::open frm_tasks
+','autoexec');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"name\", t0.\"notes\", t0.\"duedate\", t0.\"startstamp\", t0.\"stopstamp\" from \"tbl_task\" t0    ','tbl_task 10 10 t0','','name t0 unsorted {} Yes notes t0 unsorted {} Yes duedate t0 unsorted {} Yes startstamp t0 unsorted {} Yes stopstamp t0 unsorted {} Yes','
+','qry_all_tasks');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"name\", t0.\"notes\", t0.\"duedate\", t0.\"startstamp\", t0.\"stopstamp\" from \"tbl_task\" t0 where t0.\"name\"=\'$taskname\' ','tbl_task 10 10 t0','','name t0 unsorted {} Yes notes t0 unsorted {} Yes duedate t0 unsorted {} Yes startstamp t0 unsorted {} Yes stopstamp t0 unsorted {} Yes','
+
+
+','qry_one_task');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"name\", t0.\"notes\", t0.\"duedate\", t0.\"startstamp\", t0.\"stopstamp\" from \"tbl_task\" t0 where t0.\"stopstamp\" is null and t0.\"startstamp\" is not null order by t0.\"duedate\" desc ','tbl_task 10 10 t0','','name t0 unsorted {} Yes notes t0 unsorted {} Yes duedate t0 unsorted {} Yes startstamp t0 unsorted {} Yes stopstamp t0 unsorted {} Yes','
+
+
+','qry_started_tasks');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"name\", t0.\"notes\", t0.\"duedate\", t0.\"startstamp\", t0.\"stopstamp\" from \"tbl_task\" t0 where t0.\"stopstamp\" is not null  ','tbl_task 10 10 t0','','name t0 unsorted {} Yes notes t0 unsorted {} Yes duedate t0 unsorted {} Yes startstamp t0 unsorted {} Yes stopstamp t0 unsorted {} Yes','
+
+
+','qry_stopped_tasks');
+-- PGA
+CREATE TABLE tbl_task (name varchar,notes varchar,duedate date,startstamp timestamptz,stopstamp timestamptz);INSERT INTO tbl_task (name,notes,duedate,startstamp,stopstamp) VALUES ('protest the war','write, email, and fax your politicians','2003-03-17','2003-03-12 19:11:49.75908-05',NULL);INSERT INTO tbl_task (name,notes,duedate,startstamp,stopstamp) VALUES ('ride the bus','save some petroleum and make our air cleaner','2003-03-12','2003-03-12 19:14:40.936413-05',NULL);
+-- PGA
+
+            CREATE VIEW simple_view
+                     AS SELECT t0.name FROM tbl_task t0;
+-- PGA

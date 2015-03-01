@@ -1,0 +1,848 @@
+Last changes:
+
+02.19.2004
+    * redo of 'About' window, with scrolling credits -cmaj
+    * updates for 0.99.0.20040219 release -cmaj
+
+02.16.2004
+    * added option to connect immediately after using the
+      new db creation wizard, also other options implemented
+      for CREATE DATABASE (encoding, location, template)
+      plus handling for owner if PG >= 7.3 -cmaj
+
+02.15.2004
+    * added New Database Creation wizard to help walk
+      newbies through the process from Database->New -cmaj
+
+02.05.2004
+    * easier importing of HTML tables with the wizard -cmaj
+
+01.04.2004
+    * added notebook widget to forms, so that the notebook
+      holds pages of subforms; also improved subforms
+      handling of variables and namespaces -cmaj
+    * fixed import wizard when creating a new table and/or
+      changing column names from defaults (column#) -cmaj
+
+01.03.2004
+    * made nice drag-n-drop for tab order traversal
+      selection in forms with BWidget ListBox -cmaj
+
+01.02.2004
+    * BUG #86: resizing of Report sections now preserves
+      offsets for report objects, although functionality is
+      different whether you click the spin box or drag on
+      the canvas, it *feels* better -cmaj
+    * BUG #27: list databases in "open" dialog that are
+      available in the cluster within which the current
+      database selected in the main window is a part -cmaj
+
+12.31.2003
+    * added main window display for Indexes, Rules, Languages,
+      Casts, Operators, Operator Classes, Aggregates, and
+      Conversions (should be all the rest of the PG objects) -cmaj
+    * added "HotSyncPGA" option to "Server" menu, so
+      anything in lib/ dir (except mainlib) can be edited
+      and reloaded quickly for more rapid prototyping -cmaj
+
+12.30.2003
+    * added support for displaying Triggers -cmaj
+    * moreText - new proc for easy edit/display of text when
+      there's more than can fit into an entry widget,
+      ie. use buttons with an elipsis '...' -cmaj
+
+12.26.2003
+    * create/design Domains functionality added -cmaj
+    * removed Domains from connections with PG < 7.3 -cmaj
+    * made Comments work for Views -cmaj
+
+12.23.2003
+    * added -nicepreview option for maximizing Report
+      preview, or at least maximizing it to 95% -cmaj
+    * fixed printing of %'s in Reports -cmaj
+
+12.22.2003
+    * added support for displaying Domains -cmaj
+
+12.21.2003
+    * add/modify base Types with new Types GUI -cmaj
+
+12.20.2003
+    * put some BWidgets and icons into Functions -cmaj
+
+12.06.2003
+    * added -printcmd command line option to default
+      printing command setup (overrides preferences) -cmaj
+    * preserve View permissions when Saving a modified version -cmaj
+
+12.04.2003
+    * added new directory 'utils', and new script called mkkit.tcl
+      that generates a starkit for pgaccess -brett
+
+12.01.2003
+    * added -multipleselection option to Calendar widget,
+      defaults to letting you pick more than one date -cmaj
+    * fixed up user create/modify in UserGroups to use
+      Calendar widget when choosing Valid Until date -cmaj
+
+11.30.2003
+    * many improvements and options added to Calendar widget -cmaj
+
+11.29.2003
+    * added a Calendar megawidget as a BWidget,
+      functionality will eventually mirror the iwidget's
+      Calendar, and hopefully get included with BWidgets -cmaj
+
+11.24.2003
+    * added options.tcl file, for the options db. We should
+      migrate to using this to setting globals config
+      options, instead of explicitly setting them in the
+      widgets (where applicable). We can also use the option
+      db down the road to accomplish *basic* theming (i.e.
+      colors, fonts, etc). -brett
+    * more .hlp files translated -bartusl
+    * improved LaTeX parser -bartusl
+
+11.23.2003
+    * added WITH GRANT OPTION support to User-Groups window,
+      by making the permission button grey if GRANT OPTION,
+      and fixed some quoting for funky named tables and
+      functions -cmaj
+
+11.19.2003
+    * adding the html.sty file that is needed for compiling the
+      LaTeX source. -bartus
+    * more .hlp files translated to .tex files -bartusl
+    * worked in Checksum for Felipe Voloch's Barcodes -cmaj
+
+11.18.2003
+    * putting scrollbars into 'grid' instead of 'pack'
+      geometry manager, for proper GUI design, starting with
+      the main window and also the new Types window -cmaj
+    * composite Types can now be created -cmaj
+
+11.17.2003
+    * added preliminary support for PG Types -cmaj
+    * set tablelist in right-pane to use 'dictionary' sort
+      mode, which is best of 'ascii' and 'integer' sorts -cmaj
+
+11.16.2003
+    * added LaTeX support to PgAccess help. Now the help files
+      can be translated to LaTeX files. This way we can easily
+      create .dvi, .pdf, .hmtl documentation for PgAccess: just
+      'make dvi|pdf|html' in the help directory. -bartusl
+    * translated and added to the repository a few help files
+      to LaTeX, for trying out this new feature. -bartusl
+
+11.15.2003
+    * added Databases, Schemas, and Languages to User-Groups -cmaj
+
+11.14.2003
+    * fix for Schema qualified Views in User-Groups manager -cmaj
+    * Functions now show their Schema, but User-Groups GRANT needs work -cmaj
+    * started some Schema handling for Sequences -cmaj
+
+11.13.2003
+    * Views in PG 7.3+ now have a separate Schema column -cmaj
+
+11.12.2003
+    * got updated pgin.tcl for PG 7.4 and new frontend/backend
+      protocol v3, now need both pgin2.tcl and pgin3.tcl for
+      v2/v3 protocols, depending on command line option:
+        -pgintcl for v2, and -pgintcl3 for v3 -cmaj
+
+11.09.2003
+    * cleaned up loading of Tcl-PG interface for new Pgtcl
+      package, so that should obsolete the old shared lib
+      method in the future, as fix for bug #116 -cmaj
+
+10.30.2003
+    * added barcodes for Reports, usage:
+      "Barcode:: $height $number_to_code" -cmaj
+    * added PgAccess Images to Reports, usage:
+      "PGAImage::$imagename" -cmaj
+
+10.14.2003
+    * fixed bug in export wizard, removed OID column from
+      export proc in tables namespace (bug found by Tony
+      Grant) AND also fixed off-by-one error on export -cmaj
+
+10.08.2003
+    * added isTable to Database namespace -cmaj
+    * implemented some suggestions by Eildert Groeneveld in import wizard,
+      like a whitespace delimiter preset (and some bugs while there) -cmaj
+
+10.05.2003
+    * added patch from Paul J. Morris for DISTINCT values in visual qb -cmaj
+    * a little cleaning of Brett's work to handle table indexing issues
+      so they play nice with the visual qb -cmaj
+
+09.01.2003
+    * updates for PG 7.4, mostly in Views but some Table stuff, too
+      (mostly a migration of code from mainlib to database namespace) -cmaj
+
+08.27.2003
+    * cleaning out some funk in the connections management -cmaj
+
+08.04.2003
+    * updated BWidgets from 1.4.1 to 1.6.0 -cmaj
+    * several improvements to User-Groups manager thanks to better
+      BWidget Tree -cmaj
+    * highlighting PG/PGA objects blue/red respectively in main window -cmaj
+
+07.22.2003
+    * splash screen fix by Adam Leko -bartusl
+    * updated tablelist from 2.7 to 3.3 -cmaj
+
+07.19.2003
+    * added splash screen thanks to Adam Leko -cmaj
+
+07.18.2003
+    * added Sorting and Filtering to Queries -cmaj
+    * debug messages hidden on startup. The -debug command line parameter
+      can be used to display them. They can be viewed even runtime using
+      the Main/Database/Debug window. -bartusl
+    * command line parameters sorted on the help page. -bartusl
+
+07.16.2003
+    * sorting Views alphabetically in the main window, pretty minor -cmaj
+
+07.11.2003
+    * upgraded to version 1.5.0 of L.J. Bayuk's pgin.tcl -cmaj
+    * bug 103, added View name to title of open View window -cmaj
+    * bug 106, multiple layout cleaning -cmaj
+
+07.07.2003
+    * fixed 'move down' button for table design thanks to Dominique Leger -cmaj
+
+07.02.2003
+    * added several extra checks around opentree commands to see
+      if node that is about to be opened actually exists -cmaj
+
+06.13.2003
+    * changed control buttons in lots of modules to a link relief -cmaj
+    * import/export wizard fixed when column names have white space -cmaj
+
+06.12.2003
+    * added Gary Howell's idea for returning name of opened window for
+      Views, and extended to Tables and Queries -cmaj
+    * fixed whitespace issues with Views, dropped pg_get_viewdef() Function
+      for use of pg_views View -cmaj
+    * fixed couple quirks with User-Group Manager -cmaj
+    * you can now rename all objects from the main window -cmaj
+
+05.21.2003
+    * multiple connections work, added Open and Delete buttons to connections
+      manager window, also more scrubbing of lint from connections file -cmaj
+
+05.20.2003
+    * bug 19, added the red cross back, even when making a new Diagram,
+      except when printing (it is then hidden) -cmaj
+    * allowing db connection selection for PgAckages -cmaj
+    * added PgAckages and Command Line Options to help system -cmaj
+    * weekly release 0.98.8.20030520 after the above 3 items -cmaj
+
+05.19.2003
+    * added pseudo-table widget and automagic bindings to Forms -cmaj
+    * libpgtcl loading failures now fallback to using pgin.tcl -cmaj
+    * handy button commands for DataSet traversal in Forms -cmaj
+    * fixing up READMEs before tomorrow's release -cmaj
+
+05.13.2003
+    * added Ctrl-f searching for Forms command code and Scripts -cmaj
+
+05.12.2003
+    * fixed Ctrl-v so it pastes over stuff instead of appending -cmaj
+    * added extra user-defined bindings support to Form widgets -cmaj
+
+05.06.2003
+    * 0.98.8.20030506 'weekly' release -cmaj
+
+04.30.2003
+    * added Help icons all over the place -cmaj
+
+04.28.2003
+    * added printing for Scripts, Queries, and Visual Queries -cmaj
+
+04.24.2003
+    * added BWidgets and standardized printing for Diagrams -cmaj
+
+04.22.2003
+    * made showError use BWidget, might allow for email reporting of bugs -cmaj
+
+04.15.2003
+    * icons in visual query builder, now listing views there, too -cmaj
+    * improved pg/pga object display from user prefs -cmaj
+    * added presets to import/export wizard (and some unicode) -cmaj
+    * fixed up Makefile, made install safer -cmaj
+
+04.11.2003
+    * added exporting from Views and Queries, and reworked sql txt builder -cmaj
+
+04.03.2003
+    * more Usergroups enhancements - better tree and PG/PGA obj viewing -cmaj
+
+03.31.2003
+    * tagged release for today, where it is yet i dunno -cmaj
+    * after tagging, fixed "Add New Index" button in tables.tcl -cmaj
+
+03.29.2003
+    * preparing for weekly release 0.98.8.20030331 -cmaj
+
+03.26.2003
+    * bug 95 (part): added Ctrl-w to close _lots_ of windows -cmaj
+    * cleaned up Usergroups for 7.3, linked from Table perm window -cmaj
+
+03.25.2003
+    * bug 95 (part): added Ctrl-q|n|c|r|x|d|o shortcuts to main window -cmaj
+
+03.24.2003
+    * bug 87: added -smlogin clp to only show entry boxes on the login
+      window that were not supplied on the command line -cmaj
+    * bug 85: rename images now works both in design time and from the main
+      form. -bartusl
+
+03.23.2003
+    * changed mainlib and connections to only use new form of pg_connect -cmaj
+    * added -temp command line param to only make TEMP pga_* tables -cmaj
+    * allowing finer grain selection of objects to save in PgAckages -cmaj
+    * applied L.J. Bayuk's patch, the author of pgin.tcl, to importexport
+      to let COPY work with pgin.tcl -cmaj
+
+03.19.2003
+    * forcing cmdline package load from widgets dir if not installed -cmaj
+
+03.18.2003
+    * bug 101: exporting with COPY was broke -cmaj
+    * bug 100: exporting from table/view/query results implemented -cmaj
+    * before today, added rotation and anchor to printing postscript -cmaj
+    * fixed ::Database::quoteObject -cmaj & brett
+    * bug 62: dump should work with varying number of conn params -cmaj
+    * bug 97: export wizard now does some pretty nice HTML -cmaj
+    * added pgintcl command line option to load pgin.tcl plugin,
+      thus giving you a pure Tcl-PG interface instead of the dll/so -cmaj
+
+02.13.2003
+    * bugfix: hiding systen functions -bartusl
+    * added return type at the functions list in main window -bartusl
+
+01.17.2003
+    * preparing for weekly release, 0.98.8.20030117 -cmaj
+    * added osx folder, fixed win docs -cmaj
+
+01.11.2003
+    * finished export wizard, improvements to import wizard, no presets -cmaj
+    * modified TkWizard to use BWidgets, and added to it -geometry param -cmaj
+
+01.10.2003
+    * added -conn and -password command line switches, for automatic loading
+      connections also specified on the command line, but allowing a password
+      to echo to the screen is still a Bad Idea and should be changed -cmaj
+    * added -geometry tag to tkwizard, fixed up import wizard to use it -cmaj
+
+01.08.2003
+    * added a popup menu to the main window objects list. New/Open/Design/... 
+      can be reached by clicking with the right button on the list and choosing
+      an entry in the popup menu. -bartusl
+
+01.07.2003
+    * made -noauto command line parameter prevent loading and saving
+      of connections -cmaj
+    * added -noscript clp to prevent execution of 'autoexec' Scripts -cmaj
+
+01.06.2003
+    * added clone proc to all PGA objects and all supported PG objects,
+      for use with copying objects, and the introspect proc now just
+      calls clone with the same names for original and destination objects
+      (used to make PgAckages) -cmaj
+    * the PgAckage demo/demo.pga now completely holds the demo -cmaj
+
+01.04.2003
+    * added login, host, dbname, pgport, and username command line params -cmaj
+    * added a tree demo for forms as a pgackage in demo/ -cmaj
+
+12.17.2002
+    * more fixes for the startup procedure, not finished yet. -bartusl
+    * support for version numbering in the first part of the pgaccess.tcl
+      file. -bartusl
+    * show/hide main window support added ('hide' command line
+      parameter) -bartusl
+
+12.16.2002
+    * preparing for weekly release, 0.98.8.20021216 -cmaj
+
+12.15.2002
+    * added BWidget Tree to forms, a subform widget, and images (almost) -cmaj
+
+12.14.2002
+    * added introspect proc to tables module, tied into PgAckages -cmaj
+    * delete bad connection when auto-connecting to a non-pga aware db -cmaj
+
+12.13.2002
+    * added SendExcel from Karl Swisher into extra directory -cmaj
+    * fixed delimeter bug in old import/export code, added while making
+      the wizard -cmaj
+
+12.11.2002
+    * added preliminary debug support (Database menu -> Debug) -bartusl
+
+12.10.2002
+    * now doing limited imports with the wizard -cmaj
+
+12.09.2002
+    * moved import/export wizard to use tkwizard, almost completed -cmaj
+    * fixed the libpgtcl load procedure and moved it from 'main' to
+      'init' -bartusl
+    * preliminary suport for command line parameters added -bartusl
+
+12.07.2002
+    * merged beta-2 branch back into mainline CVS -cmaj
+
+12.05.2002
+    * changed startup procedure. Now all is made in tcl! Variables can be set
+      trough the config file, the enviroment variables and command line
+      parameters.
+      Precedence levels: defaults/config/env.var/cmd.line -bartusl
+    * code restructured and simplified -bartusl
+
+12.04.2002
+    * moved Magyar translation from current CVS to this beta-2 branch -cmaj
+    * final touch up to docs before releasing 0.98.8 -cmaj
+
+11.26.2002
+    * fixed bug 70, updating documentation to point to wiki and
+      Tcl/Tk 8.3 version notice (8.3 required for BWidgets) -cmaj
+
+11.25.2002
+    * cosmetic change of 'Users' tab to read 'Users/Groups' -cmaj
+    * Preserving OID's on saving functions. Patch submitted by
+      Nikita V. Borodikhi - Thank's! -bartusl
+
+11.22.2002
+    * users/groups now handles tables, views, sequences, and functions -cmaj
+    * pg/pga tables now on by default, regardless of preferences, as it
+      didn't appear to be working with PG v7.2 -cmaj
+
+11.15.2002
+    * fixed bug 53, allow resizing of reports -cmaj
+    * cleaned up reports significantly -cmaj
+    * updated internal documentation from 'Help' on main screen -cmaj
+    * added more documentation to some code -cmaj
+    * prepared for release of 0.98.8 final -cmaj
+
+11.13.2002
+    * Added patches from Stephane Mariel (French lang & intlmsg). -brett
+    * Fixed bug where toggling the global view pgaccess/system tables
+      flag did not affect the connections. -brett
+    * fixed bug where pgaccess tables were still showing up for 7.3 dbs. -brett
+
+11.10.2002
+    * preliminary addition of new users and groups window, which at least
+      provides the same level of support for user modifications, and adds
+      a little support for groups (there's much more to do!) -cmaj
+
+11.04.2002
+    * "Add new column" window redesigned (Tables info) -bartusl
+
+11.01.2002
+    * "Open database" window redesigned -bartusl
+
+10.25.2002
+    * Images load, view, modify features added, plus with the
+      "Images::get $imagename" one can get the base64 code of the image
+      (it can be used to show the image on the forms) -bartusl
+
+10.17.2002
+    * images.tcl module added. It is just a framework yet with no
+      functionality. -bartusl
+
+10.13.2002
+    * preliminary add of import-export wizard, doesn't work yet though -cmaj
+
+10.11.2002
+    * the "Table information" window redesigned using the tablelist widget
+      -bartusl
+    * added intlmsg error message (stdout) if untranslated message found
+      -bartusl
+
+10.05.2002
+    * added introspect proc to all PGA objects -cmaj
+    * expanded PgAckages to all PGA objects -cmaj
+
+10.04.2002
+    * fixed bug #60 - table INSERT, UPDATE, DELETE in tables module for PG 7.3
+      -cmaj
+    * added support for copying PGA objects across database connections -cmaj
+    * added preliminary support for PgAckages, just Graphs right now -cmaj
+
+10.03.2002
+    * Added better checking/reporting to shared lib loading...still needs some
+      work though. -brett
+    * re-worked ::Database::quoteObject to fix bug and stream line a bit. -brett
+    * 0.98.8 beta 2 !!!
+    * now begins the joys of multiple branches in CVS :)
+
+10.02.2002
+    * fixed bug 51, added Save As command to Scripts, Forms, Reports, in
+      addition to making Save command use OIDs to refresh itself -cmaj
+    * added check for empty lastdb on initial connection -cmaj
+    * moved some SQL from tables to database module for 7.3 table design -cmaj
+    * finished graphs, now can save and print -cmaj
+
+10.01.2002
+    * Added initial support for per connection preferences (manage connections)
+      -brett
+    * fixed bug 49, relating to proper display of object class in form design
+      -cmaj
+
+09.27.2002
+    * fixed bug where copy, rename, delete would get invoked for host nodes
+      in the tree. -brett
+
+09.26.2002
+    * fixed bug #57. Instead of 64 chars the procedure uses 32 chars from the
+      column definition. It is just a temporary solution, we should replace
+      any table view control with the tablelist component. -bartusl
+
+09.23.2002
+    * removed code that delete connection info if autoload=false. -brett
+    * added pgaccesstables preference to show/hide pgaccess tables (bug 48)
+      -brett
+    * added back the lastdb rememberence code...lastdb selected in tree. -brett
+    * added new global procedure in the pgaccess.tcl file for debug purposes
+      say $msg just opens a tk_messageBox with the given message -bartusl
+    * renamed all schema references to diagram -cmaj
+    * added primary keys on pga object names to fix bug #36 -cmaj
+
+09.22.2002
+    * moved more connection stuff from mainlib to connections namespace,
+      should be handling add/remove of connections with/without passwords
+      and auto-loading and saving passwords with more stability -cmaj
+
+09.20.2002
+    * added tool tips to form icon buttons, couple other form bugs -cmaj
+    * fixed script cache, now actually works (looked at SQL window) -cmaj
+
+09.18.2002
+    * added todo list -bartusl
+    * added bugs list -bartusl
+    * syntax highlight bugfix for switches highlight ( -xyz ) -bartusl
+    * fixed up demo, primarily using demo 7.2 version -cmaj
+
+09.16.2002
+    * added initial Graphs module (from Bret Green's code) -cmaj
+    * working on password connections handling -cmaj
+    * added ::Database::getColumnsList and ::Database::quoteObject -cmaj
+
+09.13.2002
+    * Added Connections::openConn proc to replace open_database on startup, to 
+      hopefully fix the problems with pgaccess crashing on startup. -brett
+
+09.10.2002
+    * added cacheing to Scripts, also cleaned scripts up -cmaj
+    * added Bret Green's graphing code to extra/ dir -cmaj
+
+09.09.2002
+    * 0.98.8 beta 1 !!!
+
+09.08.2002
+    * added BWidget's SelectFont to forms -cmaj
+
+09.07.2002
+    * fixed bug where sys tables were not being displayed, 
+      when show sys tables flag was on. -brett
+    * changed tables.tcl so that it would handle schema.table properly 
+      when display table contents. -brett
+    * changed get_dwlb_selection so that it returns schema.table for Tables,
+      and version >= 7.3. -brett
+    * added checks to pgaccess.tcl to check that dbnames are not empty 
+      in connections file. -brett
+    * added selection of db node upon startup. -brett
+    * added ::Connections::getIdFromHandle proc to connections. -brett
+    * minor touch up to reports, columns were screwing up -cmaj
+    * added win32 instructions and README.win32 (straight from the wiki) -cmaj
+    * added icons to forms and reports, plus a couple of tweaks to both -cmaj
+
+09.06.2002
+    * fixed bug where the last db closed would cause an error. -brett
+    * renamed external names of "schema" to "diagrams". -brett
+    * moved pg-new.tcl to pgaccess.tcl and mainlib-new.tcl to mainlib.tcl. New 
+      interface is in place. -brett
+    * created a tag for pgaccess.tcl and mainlib.tcl before adding the 
+      new interface tag = old-interface in case we need to refer back to 
+      the old interface. -brett
+    * added window geometry to preference file, so that the last session 
+      window size is remembered. This works for both "Exit" and if the 
+      window is destroyed. -brett
+    * copied (from pgaccess.tcl) and fixed startup procedure in 
+      pg-new.tcl -bartusl
+    * removed PGACCESS_SxHg enviroment variable. Syntax highlight is enabled
+      all the time -bartusl
+
+09.05.2002
+    * reports get all recs per page at once, except for Functions -cmaj
+
+09.02.2002
+    * added support for mulitple connections. This affected Mainlib mostly,
+      and pg-new.tcl. -brett
+    * added connections namespace to support the connection info for 
+      storing the multiple connection data. There are several helper 
+      procs now for connections. -brett
+    * changed icons a little bit. -brett
+    * added addHostNode and addDbNode procs to add nodes to the tree 
+      listing. -brett
+    * added qualifySysTable proc so that you can wrap system table names 
+      in this proc and it will add the proper schema (Pg_catalog) if the 
+      version is >= 7.3. -brett
+    * changed how PG version is retrieved. It is now stored in the 
+      connection array after intial retrieval from DB. -brett
+    * cleaning forms and reports to better comply with developer tidbits -cmaj
+    * added BWidget SelectFont to reports, ComboBox for table/view list -cmaj
+    * added "Update" and "Edit" buttons for labels and formulas in reports -cmaj
+
+09.01.2002
+    * fixed the main tablelist, so that for integers, it sorts based on 
+      integer. Before it was just an ASCII sort -brett
+    * handleToolBar proc to handle the "show toolbar" flag. -brett
+    * Capitalized "Access" in window title. -brett
+    * updated toolbar. There are 2 toolbars now. One for "Database" and 
+      one for "Object". -brett
+    * added new icon library icons -brett
+    * fixed some of the button commands in the toolbar -brett
+    * added scrollbars to the tree view -brett
+    * added "decrypt" icon. This needs more functionality put in though. -brett
+    * changed font for main tablelist to use the font_normal global 
+      default font -brett
+    * used combobox for host in open db window, and used spinbox for 
+      port number -brett
+    * added notebook to the preference window -brett
+    * change from pack to grid geometry manager. -brett
+    * added font selectors for the fonts in the preference window -brett
+    * added "show toolbar" checkbutton -brett
+    * used spinbox for "max rows..." -brett
+    * used combobox for "language" -brett
+    * changed how the preferences were loaded -brett
+    * moved -command data for the save button into its own proc 
+      (initSave) -brett
+    * changed the default fonts to the "new way" of doing fonts in Tk...
+      although it really isn't new ;^) -brett
+    * used icons for the table rows view -brett
+    * cleaning up "update dataset vars" functionality in forms -cmaj
+
+08.31.2002
+    * forms: fixed bug 39, added isloaded function, fixed demo cursors -cmaj
+    * added combobox to forms, for both small apps and core use -cmaj
+    * added validation commands to entry boxes -cmaj
+    * added "update dataset vars" command to pseudo-query widgets -cmaj
+
+08.30.2002
+     * added bindings to Scripts edit window: -bartus
+         <Escape> to close the window
+         <Control-Key-s> to save script
+     * the same for Functions. And another thing: on save, the functions
+       window will not be closed anymore. It was quite annoying. -bartus
+     * needed a little work on views for them to work with 7.3 -cmaj
+
+08.29.2002
+     * added scrollbars to the text widget in scripts design -bartus
+     * sql/plpgsql syntax highlight fixes for $... variables -bartus
+
+08.28.2002
+     * bugfix for tcl syntax highlight at quoted string highlight: now 
+       handling multiple line strings and escaped quotes. -bartus
+
+08.27.2002
+     * cleaning up the pgaccess.tcl, and fixing the startup process -bartus
+     * added getSQL, setVars, and modified setSQL for DataControl in forms
+       so that forms can now work with stored queries more easily, also had to
+       modify loadQuery and getSQL in queries to be visual or not -cmaj
+     * moving third party widgets to widgets directory -cmaj
+     * improved pgmonitor standalone capability (standalone flag)
+     * changed minimum size of widgets in forms upon creation to twice the
+       grid size in either direction -cmaj
+
+08.26.2002
+     * added hostname to Pgmonitor window title. -brett
+     * more changelog cleanup -cmaj
+     * form widget resize adjustment -cmaj
+     * form set name of widgets was a little buggy -cmaj
+
+08.25.2002
+     * moved Pgmonitor init so that it gets init when first invoked. -brett
+     * took out exits in Pgmonitor so that they don't kill the whole app
+       when a error occurs. -brett
+     * fixed password saving, thanks to brett and john -cmaj
+     * added Server menu tab to the right of Object, with dump and pgmon -cmaj
+     * added getSQL command to Queries for returning text of them -cmaj
+     * moved ImportExport into its own namespace -cmaj
+     * allow form widget resizing with mouse -cmaj
+
+08.24.2002
+     * forms: fixed bug 33 - form designing/testing of multiple forms -cmaj
+     * forms: fixed bug 35 - escaping of \s for capitalized tables -cmaj
+     * forms: removed 8k limit -cmaj
+     * demo: fixed report, touched up phonebook form a little -cmaj
+     * put pgmonitor into Database menu, below dump database, and removed
+       pgaccess file from repository -cmaj
+     * changed Makefile to respect this new pgaccess.tcl format -cmaj
+     * PGACCESS_HOME, when created in pgaccess.env by pgaccess.tcl, set to
+       /usr/lib/pgaccess by default -cmaj
+     * allow for saving of passwords from preferences checkbox -cmaj
+     * changed pref,print_file to print,print_file var name -cmaj
+
+08.22.2002
+     * integrated PGMonitor into PGAccess. There is a new menu item
+       called Plugins where you can invoke PGMonitor. -brett
+     * Added other widgets. Initially, these are to support PGMonitor,
+       but they can start being used for others as well. See the
+       BWidgets and tablelist directories. -brett
+     * added the close_database proc. -brett
+
+08.22.2002
+     * modified startup procedure, the rc settings now are loaded from the 
+       ~/.pgaccess/pgaccessrc file. -bartus
+     * main.tcl renamed to pgaccess.tcl, and the linux/unix startup script is
+       added to it. -bartus
+     * added dump database functionality -bartus
+     * inverted the changelog file, this way is more visible. -bartus
+
+08.21.2002
+     * added syntax highlight procedure for sql/plpgsql -bartus
+     * syntax higlight for functions, queries, views -bartus
+
+08.14.2002
+     * tables, scripts, functions, help files: 7.3 changes, NAMEDATALEN to 64,
+       as suggested by Bruce Momjian -cmaj
+
+08.13.2002
+     * forms.tcl: made test form/close test form one button, little bugs -cmaj
+     * tpe.tcl: Teo's Tcl Project Editor added to the repository -cmaj
+     * forms.tcl: added snap to grid, fixed some anchor/justify -cmaj
+
+08.11.2002
+     * mainlib.tcl: switch imp/exp from tcl reads to gets -cmaj
+
+08.09.2002
+     * mainlib.tcl: tried to clean Import/Export some more -cmaj
+     * tables.tcl: added Brett's patch to allow mixed-case column sorts -cmaj
+     * forms.tcl: added spinboxes, form bgcolor, cursors, fixed tabsort, added
+       grid to design, added ability to change class of item, lots o stuff -cmaj
+
+08.07.2002
+     * reports.tcl: images can now be pulled from the database -cmaj
+
+08.06.2002
+     * tables.tcl, scripts.tcl: made column sorts double-click mouse button 1,
+       made syntax highlighting refresh upon save -cmaj
+     * mainlib.tcl: added copying for several sections -cmaj
+     * mainlib.tcl: trying to clean Import/Export to/from tables/files -cmaj
+     * forms.tcl: justifying in addition to anchoring from earlier today -cmaj
+
+08.05.2002
+     * tables.tcl: applied Brett's patch for column sort on mouse click -cmaj
+     * forms.tcl: aligning for labels, entry, btns, checks, rads in forms -cmaj
+     * scripts.tcl, forms.tcl: checking for valid tcl upon saving -cmaj
+     * printer.tcl: output now Postscript, Text, HTML, and its using pack -cmaj
+
+08.03.2002
+     * printer.tcl: allows print callbacks to be a list of Tcl functions -cmaj
+     * forms.tcl, scripts.tcl: added cut, copy, paste with Ctrl-x|c|v for Tcl
+       code per bug 20 -cmaj
+     * mainlib.tcl: added John Turner's changes to About box -cmaj
+
+08.02.2002
+     * forms.tcl, scripts.tcl: added Bartus' syntax highlighting -cmaj
+
+07.31.2002
+     * mainlib.tcl: modified import/export to work like psql \copy cmd -cmaj
+
+07.30.2002 (after weekly release 2)
+     * printer.tcl, reports.tcl: new interface for printing to multiple formats
+       from tk canvas widgets -cmaj
+
+07.30.2002
+     * mainlib.tcl: added Help button for open database per iavors request -cmaj
+
+07.29.2002
+     * main.tcl: modified showError to take an optional help topic -cmaj
+     * preferences.tcl, printer.tcl, reports.tcl: added print dialog and
+       default print to command, modified reports to use it -cmaj
+
+07.26.2002
+     * added syntax higlight for tcl code. Right now it works only for pltcl
+       functions. No refresh yet!!! (developement version). One can control
+       the existence using the PGACCESS_SxHg enviroment variable.
+     * added new module that implements a siple Stack mechanism (stack.tcl)
+
+07.25.2002
+     * forms.tcl: added brett schwarz's patch to make pasting nicer -cmaj
+     * forms.tcl: added cut, copy, paste with Ctrl-x|c|v in form design -cmaj
+     * mainlib.tcl, database.tcl, reports.tcl: added getViewsList so views
+       are visible again and not returned with getTablesList -cmaj
+
+07.23.2002
+     * reports.tcl: added multiple columns -cmaj
+     * reports.tcl: fixed postscript output wrapping of encapsulated ps -cmaj
+     * reports.tcl: added support for using Functions in reports -cmaj
+     * reports.tcl: added GUI for grouping/sorting, little functionality -cmaj
+
+07.15.2002
+     * reports.tcl: no longer allowing empty report names -cmaj
+     * mainlib.tcl: now refreshing the reports list when you delete one -cmaj
+     * tables.tcl: fixed "ERROR:  Attribute 'oid' not found" on opening 
+       existing table design. -boyan
+
+07.13.2002
+     * schema.tcl: added coordinate system. now you can do schemas bigger
+       then your screen and save them. -boyan
+     * schema.tcl, mainlib.tcl: on rename table or rename field schema 
+       names are changed to. -boyan
+     * reports.tcl: corrections for when you pick an invalid table or view 
+       (bugs found by boyan) -cmaj
+     * reports.tcl and forms.tcl: corrections to bind of Destroy, now makes
+       sure you are destroying the parent and not a listbox -cmaj
+
+07.12.2002
+     * pgaccess.sh: moved PGLIB to /usr/lib -cmaj
+     * reports.tcl: added browsing for pictures -cmaj
+     * reports.tcl: added 'where / order by' sql entry -cmaj
+     * database.tcl: allowed getTablesList to retrieve Views as well so the
+       reports can now use views and not just tables -cmaj
+     * reports.tcl and forms.tcl: now binding Destroy of one window to
+       close of all the windows (except report preview and test form) -cmaj
+
+07.11.2002
+     * modified main.tcl for a better startup procedure. I think this
+       modifications initially were made by the Debian team, I just copied them.
+       -bartus
+     * the same for the pgaccess.sh -bartus
+     * created a copy a pgaccess.sh in pgaccess to let people start the 
+       program typing just pgaccess.
+       It's not just a symbolic link to prevent overwriting by "make all" 
+       -bartus
+     * functions.tcl: bugfix for working with overloaded functions,
+       and another one: if somebody has made a mistake 
+       in the editing process, the function was deleted, 
+       and recreation was not possibble, because the
+       program returned an error message. Now the error message is 
+       still persists, but the procedure 
+       doesn't take this into consideration. -bartus
+     * functions.tcl: Added "Save as" button to create a new function 
+       with the same source. Very usefull when one needs
+       a new function with slight modification to the source code. -bartus
+     * functions.tcl(Functions window): The default window size is 
+       increased to let larger source code visible without resizing.
+     * mainlib.tcl(main window): for the same bugfix (overloading),
+       now the functionnames are represented with the parameters too, 
+       I think, that the structure is more visible now.  Bugfix for
+       the introduced functionalities, at deleteing object (function). -bartus
+     * added chinene and chinese_big languages (made by ???) -bartus
+
+07.10.2002
+     * added validation to form names to prevent first letter being
+       Upper Case -cmaj
+     * added tab order / keyboard traversal selection to forms -cmaj
+     * major work to reports, added pictures, multiple pages -cmaj
+
+********************************************************************
+The pgaccess team.

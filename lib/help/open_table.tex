@@ -1,0 +1,20 @@
+\subsection{Opening tables for viewing and editing}
+Select the "Tables" tab from the main window, select a table from the listbox and click with the mouse on the "Open" button. A new table viewer window will be opened showing you the records from that table.
+
+\textit{Note:} Due to the fact that the records being displayed are kept in memory, only the first 200 records from that table will be displayed. The maximum number of records being displayed can be changed in the Database/Preference dialog.
+
+You can sort and filter the records being displayed. Go to the "Sort field" entry and type the name of the field. Add the desc (descending) keyword if you want records to be sorted in reverse order. If you want to sort the records based on multiple fields just separate them with commas.
+
+\textit{Example:}
+
+\texttt{	Sort field: price}
+
+\texttt{	Sort field: price desc, customer asc}
+
+If you want to select for display just some records from that table go to the "Filter conditions" entry and specify a filter criteria.
+
+\textit{Example:}
+
+\texttt{	Filter conditions: (price > 150) and (not sold)}
+
+After specifying a sort field or a filter conditions, pres Enter or the "Reload" button.

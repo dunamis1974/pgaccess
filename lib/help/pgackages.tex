@@ -1,0 +1,10 @@
+\section{PgAckages}
+PgAckages are a PgAccess specific file format designed to ease the installation 
+of small applications and to make your database more portable. Several examples 
+reside in the demo/ directory -- with the extension .pga -- for you to try.
+
+If you combine the use of PgAckages with the \emph{-temp} command line option, 
+which only creates TEMPorary PgAccess tables, you can keep all the 
+\emph{lint} from PgAccess out of your production database system.
+Connect to your database, create some queries, save them as a PgAckage, 
+then load that package on start-up each time you connect.

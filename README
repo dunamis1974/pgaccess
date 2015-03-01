@@ -1,0 +1,108 @@
+#==========================================================
+# PGACCESS 0.99.0.20040219
+#==========================================================
+
+pgaccess was originally written by Constantin Teodorescu:
+
+"I dedicate this program to my little daughters Ana-Maria and Emilia and to my
+wife for their understanding. I hope they will forgive me for spending so many
+time far from them."
+
+pgaccess is currently developed by a new development team. For more information, visit the pgaccess wiki web site - www.pgaccess.org
+
+
+#==========================================================
+# How to INSTALL ?
+#==========================================================
+
+You will need a Tcl/Tk package >= 8.3 (but for windows, only 8.3)
+
+UNIX/LINUX/BSD:
+$ tar xvfz pgaccess-0.99.0.20040219.tar.gz
+$ cd pgaccess-0.99.0.20040219
+$ su
+$ make clean
+$ make all
+
+OR
+
+$ tar xvfz pgaccess-0.99.0.20040219.tar.gz
+$ cd pgaccess-0.99.0.20040219
+$ sh pgaccess.tcl
+
+WINDOWS:
+(see README.win32 under the win32/ folder)
+
+MAC:
+(see README.osx under the osx/ folder)
+
+
+#==========================================================
+# Usage
+#==========================================================
+
+You run it with the command:
+
+       pgaccess
+
+pgaccess options:
+ -conn                Automatically loads the connection specified on the command line
+ -dbname              Database name
+ -debug               Show debug information
+ -dir                 Path to configuration file directory
+ -hide                Hide main window (will also disable the splash screen)
+ -home                PGACCESS_HOME
+ -host                Database host
+ -login               Displays login dialog at startup
+ -nicepreview         Makes the print preview window for reports nicer.
+ -noauto              Disables automatic load of connections at startup
+ -noscript            Disables execution of the 'autoexec' script
+ -nosplash            Disable splash screen
+ -password            Database password
+ -pgintcl             Uses pgin.tcl frontend/backend protocol v2 (for 6.4<=PG<=7.3), a pure Tcl-PG interface, instead of a dll/so (overrides PGLIB)
+ -pgintcl3            Uses pgin.tcl frontend/backend protocol v3 (for PG>=7.4), a pure Tcl-PG interface, instead of a dll/so (overrides PGLIB)
+ -pglib               Path to libpgtcl shared object (dll/so) file
+ -pgport              Database port
+ -printcmd            Print command to set as default.
+ -smlogin             Shrinks the login window to ask for only items not specified on the command line
+ -temp                Creates only TEMPorary PgAccess tables so your database doesn't get cluttered by them.
+ -username            Database user
+ -version             Show version information
+ -help                Print this message
+ -?                   Print this message
+
+For example, let's say you want to start pgaccess with only a login window.  This would be ideal for creating a shortcut to your program and hide the gory details from your users, provided you have an 'autoexec' Script and it opens a Form with some command menu buttons.  Try:
+
+    pgaccess -login -noauto -hide -host localhost -dbname demo -smlogin
+
+Or, maybe you just want the user to click on the shortcut and login automatically.  Try:
+
+    pgaccess -conn -noauto -hide -host localhost -dbname demo -username yourname -password yourpassword
+
+Perhaps you don't want to stick a bunch of pga_* internal tables into your production database.  Simple, specifiy the creation of TEMPorary tables.  Then be sure to save your work as a PgAckage so the next time you connect you can just load the table and all your saved Queries, Reports, etc., are available.  Try:
+
+    pgaccess -temp
+
+
+#==========================================================
+# Bug reporting
+#==========================================================
+
+For bug reporting details, visit the pgaccess bugzilla at:
+
+    http://bugzilla.pgaccess.org
+
+Alternatively, you can email questions to:
+
+    support@pgaccess.org
+
+
+#==========================================================
+# New versions
+#==========================================================
+
+You will always find the latest version, including CVS instructions, at:
+
+    http://www.pgaccess.org/
+
+

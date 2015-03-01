@@ -1,0 +1,43 @@
+#!/bin/sh
+# \
+exec wish "$0" ${1+"$@"}
+
+##
+##  This is a bogus entry, so that it can run standalone
+##  it does nothing...
+##
+proc registerPlugin {name_ cmd_} {}
+
+
+#==========================================================
+#
+# This is the startup script for PGMonitor, so that it
+# can be run standalone (i.e. without PGAccess).
+#==========================================================
+#
+if {![info exists env(PGACCESS_HOME)]} {
+    set lib lib
+} else {
+    set lib [file join $env(PGACCESS_HOME) lib]
+}
+
+lappend auto_path $lib [file join $lib widgets]
+package require BWidget
+package require tablelist
+
+wm withdraw .
+
+source [file join $lib plugins pgmonitor.tcl]
+
+set ::Pgmonitor::PgAcVar(standalone) 1
+
+#Window show .pgaw:Pgmonitor
+#Window hide .pgaw:Pgmonitor
+
+foreach name {query_popup pgaw:Pgmonitor} {
+    if {[info procs vTclWindow.$name] != ""} {
+         eval "vTclWindow.$name .$name"
+    }
+}
+
+Pgmonitor::widget_init $argc $argv .pgaw:Pgmonitor

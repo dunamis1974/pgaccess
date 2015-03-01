@@ -1,0 +1,36 @@
+\section{Functions}
+The Functions tab is used to inspect the user defined functions in the
+database, to define new functions and to alter the existing ones.
+
+Press the \emph{New} button to define a new function. You should enter the
+function name, the function parameters (if any) separated by comma.
+If function returns a value, you should specify the
+\htmlref{PostgreSQL data type}{data_types} that function will return.
+
+You must also specify the language that will be used to parse the defined
+function. You could specify SQL, plpgsql, pgtcl or C. Then you should enter the
+function body. Press \emph{Save} button in order to save it.
+
+Press the \emph{Save as} button to save a copy of your function in a different name.
+
+\textit{Example:}
+We have a table called \emph{products} that is indexed on \emph{id} (int4) field and
+contains the float8 field \emph{price}. We will define a new function 
+\emph{get\_product\_price} that will return the product price for a given id.
+
+You should enter:
+\begin{itemize}
+    \item \emph{get\_product\_price} as the function name,
+    \item \emph{int4} in parameters entry,
+    \item \emph{float8} for returns,
+    \item \emph{SQL} " for the language.
+\end{itemize}
+Then go to the function body definition and type:
+\begin{itemize}
+    \item \texttt{SELECT price FROM products where id = \$1}
+\end{itemize}
+To delete a function, select it from the list box and use the menu command
+Object/Delete.
+
+For more information see SQL commands \htmlref{CREATE FUNCTION}{create_function} and
+\htmlref{DROP FUNCTION}{drop_function}.

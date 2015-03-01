@@ -1,0 +1,403 @@
+
+--
+-- PgAccess PgAckage
+--
+
+-- PGA
+
+            INSERT INTO pga_graphs (graphsource, graphcode, graphname)
+                 VALUES ('cities','variable ::Graphs::lineWidth ; set ::Graphs::lineWidth {2} ; variable ::Graphs::labelGap ; set ::Graphs::labelGap {5} ; variable ::Graphs::dataSeriesNames  ; lappend ::Graphs::dataSeriesNames {id} ; variable ::Graphs::xtitle ; set ::Graphs::xtitle {City} ; variable ::Graphs::type ; set ::Graphs::type {bar} ; variable ::Graphs::rightMargin ; set ::Graphs::rightMargin {20} ; variable ::Graphs::barGap ; set ::Graphs::barGap {10 3} ; variable ::Graphs::markerSize ; set ::Graphs::markerSize {6} ; variable ::Graphs::dataSeries ; array set ::Graphs::dataSeries {id {3 4 5 6 1 7}} ; variable ::Graphs::tickSize ; set ::Graphs::tickSize {5} ; variable ::Graphs::xcolumn ; set ::Graphs::xcolumn {name} ; variable ::Graphs::header ; set ::Graphs::header {50} ; variable ::Graphs::leftMargin ; set ::Graphs::leftMargin {50} ; variable ::Graphs::numYIntervals ; set ::Graphs::numYIntervals {10} ; variable ::Graphs::name ; set ::Graphs::name {A Silly Graph} ; variable ::Graphs::title ; set ::Graphs::title {An Appropriate Title} ; variable ::Graphs::xsize ; set ::Graphs::xsize {600} ; variable ::Graphs::xlabels ; set ::Graphs::xlabels {Braila Galati Dallas Cairo Bucuresti Montreal} ; variable ::Graphs::ytitle ; set ::Graphs::ytitle {} ; variable ::Graphs::ysize ; set ::Graphs::ysize {400} ; variable ::Graphs::dataSeriesColor ; array set ::Graphs::dataSeriesColor {id #6cd02d77bd70} ; variable ::Graphs::ymin ; set ::Graphs::ymin {0} ; variable ::Graphs::footer ; set ::Graphs::footer {60} ; variable ::Graphs::ymax ; set ::Graphs::ymax {10} ; ','A Silly Graph');
+-- PGA
+
+            INSERT INTO pga_graphs (graphsource, graphcode, graphname)
+                 VALUES ('cities','variable ::Graphs::lineWidth ; set ::Graphs::lineWidth {2} ; variable ::Graphs::labelGap ; set ::Graphs::labelGap {5} ; variable ::Graphs::dataSeriesNames  ; lappend ::Graphs::dataSeriesNames {id} ; variable ::Graphs::xtitle ; set ::Graphs::xtitle {xxx} ; variable ::Graphs::type ; set ::Graphs::type {line} ; variable ::Graphs::rightMargin ; set ::Graphs::rightMargin {20} ; variable ::Graphs::barGap ; set ::Graphs::barGap {10 3} ; variable ::Graphs::markerSize ; set ::Graphs::markerSize {6} ; variable ::Graphs::dataSeries ; array set ::Graphs::dataSeries {id {3 4 5 6 1 7}} ; variable ::Graphs::tickSize ; set ::Graphs::tickSize {5} ; variable ::Graphs::xcolumn ; set ::Graphs::xcolumn {prefix} ; variable ::Graphs::header ; set ::Graphs::header {50} ; variable ::Graphs::leftMargin ; set ::Graphs::leftMargin {50} ; variable ::Graphs::numYIntervals ; set ::Graphs::numYIntervals {10} ; variable ::Graphs::name ; set ::Graphs::name {A LIne Graph} ; variable ::Graphs::title ; set ::Graphs::title {Title} ; variable ::Graphs::xsize ; set ::Graphs::xsize {400} ; variable ::Graphs::xlabels ; set ::Graphs::xlabels {4039 4036 5362 9352 4013 5325} ; variable ::Graphs::ytitle ; set ::Graphs::ytitle {} ; variable ::Graphs::ysize ; set ::Graphs::ysize {400} ; variable ::Graphs::dataSeriesColor ; array set ::Graphs::dataSeriesColor {id {#000000 #000000 #000000 #000000}} ; variable ::Graphs::ymin ; set ::Graphs::ymin {-10} ; variable ::Graphs::footer ; set ::Graphs::footer {60} ; variable ::Graphs::ymax ; set ::Graphs::ymax {10} ; ','A LIne Graph');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Working with Tables namespace','f3 13 {3 4 5 6 7 9 10 11 12 13} 377x263+59+127 {radio usa {36 24 138 36} {} USA selcont} {radio europe {36 45 141 60} {} Europe selcont} {radio africa {36 66 147 81} {} Africa selcont} {label label6 {9 99 339 114} {} {Select one of the above continents and press} {}} {button button7 {270 93 354 117} {Tables::open phonebook \"continent=\'$selcont\'\" $selorder} {Show them} {}} {button button9 {66 189 312 213} {Tables::design phonebook} {Show me the phonebook table structure} {}} {button button10 {141 228 240 252} {destroy .f3} {Close the form} {}} {button button11 {93 141 282 165} {Tables::open phonebook \"company=true\"} {Show me only the companies} {}} {radio name {183 24 261 36} {} {Order by name} selorder} {radio phone_nr {183 45 267 57} {} {Order by phone number} selorder}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('The simplest form','mf 5 {FS {set thename {}}} 306x136+82+146 {label label {42 45 99 60} {} Name {} label flat #000000 #d9d9d9 1 {Helvetica 12 bold italic}} {entry ename {120 42 219 63} {} entry2 thename ename sunken #000000 #fefefe 1 n} {button button3 {6 96 108 129} {set thename Teo} {Set the name} {} button3 raised #000000 #d9d9d9 1 n} {button button4 {192 96 300 129} {destroy .mf} {Close the form} {} button4 raised #000000 #d9d9d9 1 n} {button button5 {114 96 186 129} {set thename {}} {Clear it} {} button5 raised #000000 #d9d9d9 1 n}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('A simple demo form','asdf 14 {FS {set color none}} 370x310+50+75 {label label1 {15 36 99 57} {} {Selected color} {} label1 flat #000000 #d9d9d9 1} {entry entry2 {111 36 225 54} {} entry2 color entry2 sunken #000000 #fefefe 1} {radio red {249 21 342 36} {} {Red as cherry} color red flat #900000 #d9d9d9 1} {radio green {249 45 342 60} {} {Green as a melon} color green flat #008800 #d9d9d9 1} {radio blue {249 69 342 84} {} {Blue as the sky} color blue flat #00008c #d9d9d9 1} {button button6 {45 69 198 99} {set color spooky} {Set a weird color} {} button6 ridge #0000b0 #dfbcdf 2} {label label7 {24 129 149 145} {} {The checkbox\'s value} {} label7 flat #000000 #d9d9d9 1} {entry entry8 {162 127 172 145} {} entry8 cbvalue entry8 sunken #000000 #fefefe 1} {checkbox checkbox9 {180 126 279 150} {} {Check me :-)} cbvalue checkbox9 flat #000000 #d9d9d9 1} {button button10 {219 273 366 303} {destroy .asdf} {Close that simple form} {} button10 raised #000000 #d9d9d9 1} {button button11 {219 237 366 267} {Forms::open \"Phone book\"} {Open my phone book} {} button11 raised #000000 #d9d9d9 1} {listbox lb {12 192 162 267} {} listbox12 {} lb sunken #000000 #fefefe 1} {button button13 {12 156 162 186} {.asdf.lb insert end red green blue cyan white navy black purple maroon violet} {Add some information} {} button13 raised #000000 #d9d9d9 1} {button button14 {12 273 162 303} {.asdf.lb delete 0 end} {Clear this listbox} {} button14 raised #000000 #d9d9d9 1}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Working with listboxes','f2 5 {FS {set thestudent \"\"}} 257x263+139+147 {listbox lb {6 6 246 186} {} listbox1 {} lb sunken #000000 #ffffd4 1} {button button2 {9 234 124 258} {# Populate the listbox with some data
+#
+
+foreach student {John Bill Doe Gigi} {
+	.f2.lb insert end $student
+}
+
+
+
+# Binding the event left button release to the
+# list box
+
+bind .f2.lb <ButtonRelease-1> {
+	set idsel [.f2.lb curselection]
+	if {$idsel!=\"\"} {
+		set thestudent [.f2.lb get $idsel]
+	}
+}
+
+# Cleaning the variable thestudent
+
+set thestudent {}} {Show students} {} button2 groove #000000 #d9d9d9 2} {button button3 {132 234 247 258} {destroy .f2} {Close the form} {} button3 groove #000000 #d9d9d9 1} {label label4 {9 213 119 228} {} {You have selected} {} label4 flat #000000 #d9d9d9 1} {label label5 {129 213 219 228} {} {} thestudent label5 flat #00009a #d9d9d9 1}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Full featured form','{full 42 {set entrydemo {nice}
+set color {no color selected}
+
+.full.combobox_demo configure -values {Look a BWidget combo box}
+
+.full.spinbox_demo1 configure -range {0 100 1}
+.full.spinbox_demo2 configure -range {-1000000 1000000 10}
+.full.spinbox_demo3 configure -values {This is a BWidget spin box}
+.full.spinbox_demo3 setvalue first} 420x420+56+126 #996099 left_ptr {}} {label label1 {10 390 170 410} {} {Status line} {} {} sunken #000000 #d9d9d9 2 n center l left_ptr false none {} {}} {label label2 {180 390 410 410} {} {Grooved status line} {} {} groove #000098 #d9d9d9 2 f center l left_ptr false none {} {}} {label label3 {30 10 390 40} {} {     Full featured form} {} {} ridge #000000 #d988d9 4 {Times 16 bold italic} center l left_ptr false none {} {}} {button button4 {10 230 140 260} {.full.lb insert end {it\'s} a nice demo form} {Java style button} {} {} groove #6161b6 #d9d9d9 2 b center l left_ptr false none {} {}} {label label5 {40 50 150 70} {} {Java style label} {} {} flat #6161b6 #d9d9d9 1 b center l left_ptr false none {} {}} {entry entry6 {160 50 380 70} {} entry6 entrydemo {} groove #000000 #fefefe 2 {Courier 13} center l left_ptr false none {} {}} {listbox lb {10 130 140 220} {} listbox8 {} {} ridge #000000 #ffffc8 2 n center l left_ptr false none {} {}} {button button9 {20 270 40 290} {} 1 {} {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button10 {50 270 70 290} {} 2 {} {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button11 {80 270 230 290} {} {and other hidden buttons} {} {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {text txt {150 130 330 220} {} text12 {} {} sunken #000000 #d4ffff 1 n center l left_ptr false none {} {}} {button button13 {150 230 330 260} {.full.txt tag configure bold -font {Helvetica 12 bold}
+.full.txt tag configure italic -font {Helvetica 12 italic}
+.full.txt tag configure large -font {Helvetica -14 bold}
+.full.txt tag configure title -font {Helvetica 12 bold italic} -justify center
+.full.txt tag configure link -font {Helvetica -12 underline} -foreground #000080
+.full.txt tag configure code -font {Courier 13}
+.full.txt tag configure warning -font {Helvetica 12 bold} -foreground #800000
+
+# That\'t the way help files are written
+
+.full.txt delete 1.0 end
+.full.txt insert end {Centered title} {title} \"
+
+You can make different \" {} \"portions of text bold\" {bold} \" or italic \" {italic} \".
+Some parts of them can be written as follows\" {} \"
+SELECT * FROM PHONEBOOK\" {code} \"
+You can also change \" {} \"colors for some words \" {warning} \"or underline them\" {link} } {Old style button} {} {} raised #000000 #d9d9d9 2 n center l left_ptr false none {} {}} {checkbox checkbox14 {50 300 150 320} {} different {} {} flat #00009c #d9d9d9 1 b center l left_ptr false none {} {}} {checkbox checkbox15 {50 330 150 350} {} {fonts and} {} {} flat #cc0000 #d9d9d9 1 i center l left_ptr false none {} {}} {checkbox checkbox16 {50 360 150 380} {} colors {} {} flat #00b600 #dfb2df 1 f center l left_ptr false none {} {}} {radio radio17 {182 300 302 320} {} {red , rosu , rouge} color red flat #9c0000 #d9d9d9 1 n center l left_ptr false none {} {}} {radio radio18 {182 320 302 340} {} {green , verde , vert} color green flat #009000 #d9d9d9 1 n center l left_ptr false none {} {}} {radio radio19 {182 340 302 360} {} {blue , albastru, bleu} color blue flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label selcolor {186 369 321 384} {} {} color {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button21 {330 350 410 380} {destroy .full} Exit {} {} raised #7c0000 #dfdbb8 1 b center l left_ptr false none {} {}} {combobox combobox_demo {280 90 394 110} {} combobox22 {} {} sunken #000000 #fefefe 1 n center l left_ptr true none {} {}} {spinbox spinbox_demo1 {340 130 410 150} {} spinbox23 {} {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label24 {10 100 30 120} {} {} {} {} flat #000000 #000000 1 n center l trek false none {} {}} {label label26 {30 80 50 100} {} {} {} {} flat #000000 #000000 1 n center l gobbler false none {} {}} {label label27 {50 100 70 120} {} {} {} {} flat #000000 #000000 1 n center l sizing false none {} {}} {label label28 {70 80 90 100} {} {} {} {} flat #000000 #000000 1 n center l bottom_side false none {} {}} {label label29 {90 100 110 120} {} {} {} {} flat #000000 #000000 1 n center l sb_left_arrow false none {} {}} {label label30 {110 80 130 100} {} {} {} {} flat #000000 #000000 1 n center l coffee_mug false none {} {}} {label label31 {110 100 130 120} {} {} {} {} flat #ffffff #ffffff 1 n center l double_arrow false none {} {}} {label label32 {90 80 110 100} {} {} {} {} flat #ffffff #ffffff 1 n center l question_arrow false none {} {}} {label label33 {70 100 90 120} {} {} {} {} flat #ffffff #ffffff 1 n center l shuttle false none {} {}} {label label34 {50 80 70 100} {} {} {} {} flat #ffffff #ffffff 1 n center l iron_cross false none {} {}} {label label35 {30 100 50 120} {} {} {} {} flat #ffffff #ffffff 0 n center l spraycan false none {} {}} {label label36 {10 80 30 100} {} {} {} {} flat #ffffff #ffffff 1 n center l gumby false none {} {}} {label label37 {180 80 250 120} {} {different
+mouse
+cursors} {} {} flat #000000 #f8fe08 1 n center c left_ptr false none {} {}} {spinbox spinbox_demo2 {340 160 410 180} {} spinbox38 {} {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {spinbox spinbox_demo3 {340 190 410 210} {} spinbox39 {} {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label40 {135 96 180 99} {} {} {} {} flat #000000 #fefe00 1 n center l left_ptr false none {} {}} {label label42 {340 230 410 340} {} {a
+multi
+line
+label
+aligned
+on
+the
+right} {} {} flat #000000 #ffff00 1 n e r left_ptr false none {} {}}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Working with trees','{ftree 6 {set city \"\"; set continent \"\"} 375x315+36+115 #999999 left_ptr {DataSet(.ftree.qp,city) DataSet(.ftree.qp,continent) DataSet(.ftree.qry,continent)}} {query qp {330 20 350 40} qry_city_continents query1 {} {} flat #d9d9d9 #d9d9d9 1 n center l left_ptr false none {} {}} {tree tr {30 30 210 280} {# these are variables for the labels to the right of the tree
+variable continent
+variable city
+
+# the name of the tree we clicked is the first argument
+set treename [lindex $args 0]
+
+# the name of the node we clicked is the second (or more) argument
+set nodename [lindex $args 1]
+
+# if the node only has two parts, its the root and the continent name
+
+if {[llength [split $nodename \"-\"]]==2} {
+
+	set continent [lindex [split $nodename \"-\"] 1]
+	set city \"\"
+
+	::DataControl(.ftree.qp)::setSQL \"
+		SELECT DISTINCT city
+						 FROM phonebook
+					  WHERE  continent=\'$continent\'
+							AND city!=\'\'\"
+	::DataControl(.ftree.qp)::open
+	::DataControl(.ftree.qp)::fill .ftree.tr city $nodename
+	::DataControl(.ftree.qp)::close
+
+# else we are looking at a city in a continent
+
+} else {
+
+	set continent [lindex [split $nodename \"-\"] 1]
+	set city [lindex [split $nodename \"-\"] 2]
+
+}} tree2 {} {} sunken #3779fc284b24 #fefefe 1 n center l left_ptr false none {} {}} {button btnfill {240 50 340 90} {#
+# perform these operations
+# under the query that
+# returns distinct continents
+#
+namespace eval DataControl(.ftree.qry) {
+
+	# clear out the tree, starting at the root node
+	drain .ftree.tr root
+	
+	# open the query to retrieve the continents
+	open
+	
+	# fill up the tree with the names of the continents	
+	fill .ftree.tr continent root
+
+	# close the query
+	close
+
+}
+
+
+# change the button label
+.ftree.btnfill configure -text \"Re-fill Tree\"} {Fill Tree} {} {} raised #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {query qry {250 20 270 40} qry_just_continents query4 {} {} flat #d9d9d9 #d9d9d9 1 n center l left_ptr false none {} {}} {label label5 {240 150 340 180} {} City city {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label label6 {240 190 340 220} {} Continent continent {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Working with comboboxes','{comb 14 {namespace eval DataControl(.comb.qry_cities) {
+	# you can either set the SQL manually, or use the name of a stored query
+	setSQL \"show the cities\"
+	open
+	updateDataSet
+	fill .comb.combobox_cities name
+}
+
+namespace eval DataControl(.comb.qry_pb) {
+	open
+	updateDataSet
+	fill .comb.combobox_names name
+}
+
+
+# these are bindings for fast lookups on the city combobox
+# keyboard entry will be limited to only those items in the list
+# note the placement of the \'bind\' word, this is a BWidget thing
+# standard Tk widgets would put the \'bind\' at the beginning instead
+# note also that the combobox must be set Editable=true
+
+# these two variables will hold the keystrokes and the last found index
+variable cb
+variable fnd
+
+# clear out the old keystrokes upon receiving focus
+.comb.combobox_cities bind <FocusIn> {
+	set cb \"\"
+}
+
+# clear out the old keystrokes upon receiving a mouse click
+.comb.combobox_cities bind <Button-1> {
+	set cb \"\"
+}
+
+# bind to the actual key press
+.comb.combobox_cities bind <KeyRelease> {
+	append cb %A
+	set curr $cb
+	append curr \"*\"
+	.comb.combobox_cities setvalue last
+	set pos [.comb.combobox_cities getvalue]
+	while {$pos>=0} {
+		.comb.combobox_cities setvalue @$pos
+		set txt [.comb.combobox_cities cget -text]
+		if {[string match -nocase $curr $txt]} {
+			set fnd [.comb.combobox_cities getvalue]
+			break
+		}
+		incr pos -1
+	}
+	.comb.combobox_cities setvalue @$fnd
+}
+
+# this binding isn\'t necessary, but allows for the lookup
+# to fire the command as if it were selected with the mouse
+.comb.combobox_cities bind <Key-Return> {
+	Scripts::execute \"combobox demo city update\"
+}} 375x262+129+209 #999999 left_ptr {DataSet(.comb.qry_pb,phone_nr) DataSet(.comb.qry_pb,city) DataSet(.comb.qry_pb,company) DataSet(.comb.qry_pb,continent) DataSet(.comb.qry_cities,name) DataSet(.comb.qry_pb,name)}} {combobox combobox_cities {20 70 130 90} {Scripts::execute \"combobox demo city update\"} combobox1 selected_city {} groove #000000 #fefefe 2 f center l left_ptr true none {} {}} {query qry_cities {20 10 40 30} {show the cities} query3 {} {} flat {} {} 1 n center l left_ptr false none {} {}} {query qry_pb {340 10 360 30} {SELECT * FROM phonebook WHERE company=\'f\'} query5 {} {} flat {} {} 1 n center l left_ptr false none {} {}} {combobox combobox_names {180 70 360 90} {DataControl(.comb.qry_pb)::moveTo [.comb.combobox_names getvalue]
+DataControl(.comb.qry_pb)::updateDataSet} combobox6 DataSet(.comb.qry_pb,name) {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {entry entry7 {180 210 360 230} {} entry7 DataSet(.comb.qry_pb,phone_nr) {} sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label9 {20 100 130 250} {} {This combobox has
+fast lookups enabled
+from the Form Startup
+script.
+
+Try typing the first
+letter of a city
+in the entry part.
+
+Hit enter to commit and
+update the name box.} {} {} flat #000000 #d9d9d9 1 n n l left_ptr false none {} {}} {label label10 {20 40 130 60} {} city {} {} flat #ffffff #000000 1 {helvetica 12 bold roman} center l left_ptr false none {} {}} {label label11 {180 40 360 60} {} name {} {} flat #ffffff #000000 1 {helvetica 12 bold roman} center l left_ptr false none {} {}} {label label12 {180 180 360 200} {} phone {} {} flat #ffffff #000000 1 {helvetica 12 bold roman} center l left_ptr false none {} {}} {label label14 {180 100 360 170} {} {When you pick a city, this 
+combobox will be limited to
+those people in that city.
+
+Below will be their phone #.} {} {} flat #000000 #d9d9d9 1 n n l left_ptr false none {} {}}');
+-- PGA
+
+            INSERT INTO pga_forms (formname, formsource)
+                 VALUES ('Phone book','{pb 28 {} 470x320+126+140 #999999 left_ptr {}} {label label1 {30 10 70 30} {} Name {} label1 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {entry name_entry {90 10 230 30} {} entry2 DataSet(.pb.qs,name) name_entry sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label3 {30 40 70 60} {} Phone {} label3 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {entry entry4 {90 40 200 60} {} entry4 DataSet(.pb.qs,phone_nr) entry4 sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label5 {30 70 70 90} {} City {} label5 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {entry entry6 {90 70 200 90} {} entry6 DataSet(.pb.qs,city) entry6 sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {query qs {3 6 33 33} {} query7 {} qs flat {} {} 1 n center l left_ptr false none {} {}} {button button8 {180 170 260 210} {namespace eval DataControl(.pb.qs) {
+	setSQL \"select oid,* from phonebook where name ~* \'$what\' order by name\"
+	open
+	set nrecs [getRowCount]
+	updateDataSet
+	fill .pb.allnames name
+	bind .pb.allnames <ButtonRelease-1> {
+	   set ancr [.pb.allnames curselection]
+	   if {$ancr!=\"\"} {
+		DataControl(.pb.qs)::moveTo $ancr
+		DataControl(.pb.qs)::updateDataSet
+	   }
+	}
+}} {Start search} {} button8 raised #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button9 {390 280 460 310} {DataControl(.pb.qs)::close
+DataControl(.pb.qs)::clearDataSet
+set nrecs {}
+set what {}
+destroy .pb
+} Exit {} button9 raised #000000 #d9d9d9 2 n center l left_ptr false none {} {}} {button button10 {300 240 320 260} {namespace eval DataControl(.pb.qs) {
+	moveFirst
+	updateDataSet
+}
+} |< {} button10 ridge #000092 #d9d9d9 2 n center l left_ptr false none {} {}} {button button11 {330 240 350 260} {namespace eval DataControl(.pb.qs) {
+	movePrevious
+	updateDataSet
+}
+} << {} button11 ridge #000000 #d9d9d9 2 n center l left_ptr false none {} {}} {button button12 {350 240 370 260} {namespace eval DataControl(.pb.qs) {
+	moveNext
+	updateDataSet
+}} >> {} button12 ridge #000000 #d9d9d9 2 n center l left_ptr false none {} {}} {button button13 {380 240 400 260} {namespace eval DataControl(.pb.qs) {
+	moveLast
+	updateDataSet
+}
+} >| {} button13 ridge #000088 #d9d9d9 2 n center l left_ptr false none {} {}} {checkbox checkbox14 {40 100 140 120} {} {Is it a company ?} DataSet(.pb.qs,company) checkbox14 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {radio usa {20 130 100 150} {} U.S.A. DataSet(.pb.qs,continent) usa flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {radio europe {90 130 170 150} {} Europe DataSet(.pb.qs,continent) europe flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {radio africa {170 130 250 150} {} Africa DataSet(.pb.qs,continent) africa flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {entry entry18 {130 180 170 200} {} entry18 what entry18 sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label19 {110 220 190 240} {} {records found} {} label19 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label label20 {90 220 110 240} {} { } nrecs label20 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label label21 {0 250 30 270} {} OID= {} label21 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label label22 {39 252 87 267} {} { } pbqs(oid) label22 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button23 {10 280 80 310} {set oid {}
+catch {set oid $DataSet(.pb.qs,oid)}
+if {[string trim $oid]!=\"\"} {
+   sql_exec noquiet \"update phonebook set name=\'$DataSet(.pb.qs,name)\', phone_nr=\'$DataSet(.pb.qs,phone_nr)\',city=\'$DataSet(.pb.qs,city)\',company=\'$DataSet(.pb.qs,company)\',continent=\'$DataSet(.pb.qs,continent)\' where oid=$oid\"
+} else {
+  tk_messageBox -title Error -message \"No record is displayed!\"
+}
+
+} Update {} button23 raised #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button24 {210 280 280 310} {set thisname $DataSet(.pb.qs,name)
+if {[string trim $thisname] != \"\"} {
+	sql_exec noquiet \"insert into phonebook values (
+		\'$DataSet(.pb.qs,name)\',
+		\'$DataSet(.pb.qs,phone_nr)\',
+		\'$DataSet(.pb.qs,city)\',
+		\'$DataSet(.pb.qs,company)\',
+		\'$DataSet(.pb.qs,continent)\'
+	)\"
+	tk_messageBox -title Information -message \"A new record has been added!\"
+} else {
+	tk_messageBox -title Error -message \"This one doesn\'t have a name?\"
+}
+
+} {Add record} {} button24 raised #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {button button25 {140 280 200 310} {DataControl(.pb.qs)::clearDataSet
+# clearcontrols stillinitialise
+# incorectly booleans controls to {}
+# so I force it to \'f\' (false)
+set DataSet(.pb.qs,company) f
+focus .pb.name_entry} {Clear all} {} button25 raised #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {listbox allnames {270 10 460 230} {} listbox26 {} allnames sunken #000000 #fefefe 1 n center l left_ptr false none {} {}} {label label27 {30 250 90 270} {} {} DataSet(.pb.qs,oid) label27 flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}} {label label28 {0 180 120 200} {} {Find name containing} {} {} flat #000000 #d9d9d9 1 n center l left_ptr false none {} {}}');
+-- PGA
+
+            INSERT INTO pga_scripts (scriptsource, scriptname)
+                 VALUES ('Tables::open pga_forms
+
+
+
+','How are forms keeped inside ?');
+-- PGA
+
+            INSERT INTO pga_scripts (scriptsource, scriptname)
+                 VALUES ('Tables::open phonebook \"name ~* \'e\'\" \"name desc\"
+
+
+','Opening a table with filters');
+-- PGA
+
+            INSERT INTO pga_scripts (scriptsource, scriptname)
+                 VALUES ('Mainlib::tab_click Forms
+Forms::open {Full featured form}
+
+
+','Autoexec');
+-- PGA
+
+            INSERT INTO pga_scripts (scriptsource, scriptname)
+                 VALUES ('namespace eval ::DataControl(.comb.qry_pb) {
+	clearDataSet
+	setSQL \"get phonebook for city\"
+	setVars \"{select_city $selected_city}\"
+	open
+	updateDataSet
+	fill .comb.combobox_names name
+}
+
+','combobox demo city update');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select * from phonebook where continent=\'usa\'    ','','','','','Query that can be saved as view');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','SELECT * FROM phonebook WHERE city=\'$select_city\' ','','','','
+','get phonebook for city');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"name\" from \"cities\" t0    ','cities 10 10 t0','','name t0 unsorted {} Yes','
+','show the cities');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select distinct continent from phonebook ','','','','
+','qry_just_continents');
+-- PGA
+
+            INSERT INTO pga_queries (querytype, querycommand, querytables, querylinks, queryresults, querycomments, queryname)
+            VALUES ('S','select t0.\"city\", t0.\"continent\" from \"phonebook\" t0 where t0.\"city\"!=\' ','phonebook 10 10 t0','','city t0 unsorted {} Yes continent t0 unsorted {} Yes','
+
+','qry_city_continents');
+-- PGA
+
+            INSERT INTO pga_reports (reportsource, reportbody, reportprocs, reportoptions, reportname)
+                 VALUES ('phonebook','set PgAcVar(report,tablename) \"phonebook\" ; set PgAcVar(report,extrasql) \"\" ; set PgAcVar(report,rw) 508 ; set PgAcVar(report,rh) 345 ; set PgAcVar(report,pw) 508 ; set PgAcVar(report,ph) 345 ; set PgAcVar(report,y_rpthdr) 21 ; set PgAcVar(report,y_pghdr) 47 ; set PgAcVar(report,y_detail) 66 ; set PgAcVar(report,y_pgfoo) 96 ; set PgAcVar(report,y_rptfoo) 126 ; .pgaw:ReportBuilder:draft.c create text 10 35 -font -Adobe-Helvetica-Bold-R-Normal--*-120-*-*-*-*-*-* -anchor nw -text {name} -tags {t_l mov ro} ; .pgaw:ReportBuilder:draft.c create text 10 52 -font -Adobe-Helvetica-Medium-R-Normal-*-*-120-*-*-*-*-* -anchor nw -text {name} -tags {f-name t_f rg_detail mov ro} ; .pgaw:ReportBuilder:draft.c create text 141 36 -font -Adobe-Helvetica-Bold-R-Normal--*-120-*-*-*-*-*-* -anchor nw -text {city} -tags {t_l mov ro} ; .pgaw:ReportBuilder:draft.c create text 141 51 -font -Adobe-Helvetica-Medium-R-Normal-*-*-120-*-*-*-*-* -anchor nw -text {city} -tags {f-city t_f rg_detail mov ro} ; .pgaw:ReportBuilder:draft.c create text 231 35 -font -Adobe-Helvetica-Bold-R-Normal--*-120-*-*-*-*-*-* -anchor nw -text {phone_nr} -tags {t_l mov ro} ; .pgaw:ReportBuilder:draft.c create text 231 51 -font -Adobe-Helvetica-Medium-R-Normal-*-*-120-*-*-*-*-* -anchor nw -text {phone_nr} -tags {f-phone_nr t_f rg_detail mov ro}','','','My phone book');
+-- PGA
+
+            INSERT INTO pga_diagrams (diagramtables, diagramlinks, diagramname)
+                 VALUES ('cities 10 10 phonebook 201.0 84.0','{cities name phonebook city}','Simple schema');
+-- PGA
+
+            INSERT INTO pga_images (imagename, imagesource)
+                 VALUES ('button image','R0lGODdhFAAUAPcAAAAAAICAgNjY2Pj8+G/IHLWg9wEU/0AIv8jMd6DyYRT/
+cgi/dBA1UK+y9BQB/whAv8SQAaepABQUAAgIAMhMHDLy9wj//0C/vw4EHMAA
+9wEA/0AAv1DIHAEy9wAI/wBAvzjIBKigABDIyK+goBQUFAgICHgkBPOvAP8U
+AL8IADEbyP22oAIAFEAACDYE9KgA8RQA/wgAv2jINbSgsgwUAQgIQMH81Iry
+pw3/FEC/CIwEdFoA8QDIBACgAAAUAAQIADAIyNbzMhD/CAy/QDA1yNayoBAB
+FAhACOgEyMkAoBEAFFDIJKigrzgEG6gAthQAAAgAAMjIBDKgAAgUAEAIAJQg
+yPPzoP//FL+/CJQ1JLWy8gQB/0BAvwTQBACnAAAIAAigyKfyoBT/FAi/CEwE
+MAIA8gAA/wAAv8jINTIysggIAUBAQLDIAPOgqP8UFL8ICMTIsL+g8QQU/4Ak
+BKavAAgbyKe2MhQACAgAQEwEyAIAoAAAFAAACMjIyDKgoAgUFEAICPxQJPPz
+r701AHmyAAgBAAhAAGwEAMKoAAwUAADQAADyAAD/AAC/AHAEBPQAAP8AAL8A
+AODIjBMyWhcIFAhAQMjIFDKg8wgU/2zI2PSg2v8UEHAkyPSvMv8UCL8IQOAA
+6BMA8RcA/yzIlPSgtf8UBKAQBKyvAAcUAACECACppwAUFAAICAHI+AAyBwBA
+ABQOyADAMgABCABAQBRSBAAB8gAIDACq8gAU/wAIvwAQbwGvtQAUAQAIQHQk
+FPTz8v///7+/v3Axb/T9tf8CAb9AQCz+yPSpoNyUEKzzrwf/FOAKyBMApxcA
+FAgACBTsyAAAMgAAQBRuDgAAwADAAQADQACfUgDzARwKTPcAqP8AFL8ACAA4
+BADzAABvyAC1oAABFABACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAACwAAAAAFAAUAAAIZQAFCBxIsKDBgwgNDljIsKHD
+AQQhJiQYIOJEihYvCqw4UKIAACBDAsDYceDIgicFcBToMaXJgSsFtBQJkiTL
+lyhhZvxoMGXMlj11lhRIs6bQmxpV7rz4M6nSjgGiSp1K1anVpAEBADs=');
+-- PGA
+
+            CREATE SEQUENCE "cities_id_seq"
+                  INCREMENT 1
+                   MINVALUE 1
+                   MAXVALUE 2147483647
+                      START 7
+-- PGA
+CREATE TABLE cities (id int4,name varchar,prefix varchar);INSERT INTO cities (id,name,prefix) VALUES ('3','Braila','4039');INSERT INTO cities (id,name,prefix) VALUES ('4','Galati','4036');INSERT INTO cities (id,name,prefix) VALUES ('5','Dallas','5362');INSERT INTO cities (id,name,prefix) VALUES ('6','Cairo','9352');INSERT INTO cities (id,name,prefix) VALUES ('1','Bucuresti','4013');INSERT INTO cities (id,name,prefix) VALUES ('7','Montreal','5325');
+-- PGA
+CREATE TABLE phonebook (name varchar,phone_nr varchar,city varchar,company bool,continent varchar);INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('FIAT','623463445','','t','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Gelu Voican','01-32234','Bucuresti','f','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Radu Vasile','01-5523423','Bucuresti','f','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('MUGADUMBU SRL','+92 534662634','Cairo','t','africa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Jimmy Page','66323452','','f','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('IBM','623346234','','t','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('John Doe','+44 35 2993825','Washington','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Bill Clinton','+44 35 9283845','New York','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Monica Levintchi','+44 38 5234526','Dallas','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Bill Gates','+42 64 4523454','Los Angeles','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('COMPAQ','623462345','','t','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('SUN','784563253','','t','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('DIGITAL','922644516','','t','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Frank Zappa','6734567','Montreal','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Constantin Teodorescu','+40 39 611820','Braila','f','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Ngbendu Wazabanga','34577345','','f','africa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Mugabe Kandalam','7635745','','f','africa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Vasile Lupu','52345623','Bucuresti','f','europe');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Gica Farafrica','+42 64 4523454','Los Angeles','f','usa');INSERT INTO phonebook (name,phone_nr,city,company,continent) VALUES ('Victor Ciorbea','634567','Bucuresti','f','europe');
+-- PGA
+CREATE
+                 FUNCTION getcityprefix
+                          (int4)
+                  RETURNS varchar
+                       AS 'select prefix from cities where id = $1 '
+                 LANGUAGE 'sql'
+-- PGA
+
+            CREATE VIEW "Query that was saved as a view"
+                     AS SELECT phonebook.name, phonebook.phone_nr, phonebook.city, phonebook.company, phonebook.continent FROM phonebook WHERE (phonebook.continent = 'usa'::"varchar");
+-- PGA

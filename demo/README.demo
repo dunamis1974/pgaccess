@@ -1,0 +1,42 @@
+
+There is a new demo that exists as a PgAckage in the file demo.pga
+
+To use it:
+
+1. Create a database at the commandline
+
+        $ createdb mydemo
+
+2. Start pgaccess
+
+        $ pgaccess -dbname mydemo -username myname -login
+
+3. Click on the 'right' directional arrow at the top left of the window
+   Browse for the PgAckage file demo.pga
+   Load the PgAckage
+
+
+If that doesn't work, as it's still a new demo, try the old...
+
+
+Two old demos still exist, formdemo72 and formdemo73
+
+They are suited for postgresql versions 7.2 and 7.3, respectively.
+(Although the 7.2 demo will work on both 7.2 and 7.3 clusters.)
+
+Attempts are made to keep the demos insync*, but if you can't find
+something in one demo, it might be in the other one.  Once enough
+people have switched to 7.3, we will most likely drop the 7.2 demo.
+Until then, try using the 7.2 demo first.
+
+The user specified in the demo is 'tester', so if this user doesn't
+exist in your database (which it probably doesn't), you will need
+to change the name.  Try:
+
+$ sed 's/tester/myname/g' formdemo72.sql > myformdemo.sql
+
+To install it:
+
+$ createdb mytestdb
+$ psql mytestdb < myformdemo.sql
+

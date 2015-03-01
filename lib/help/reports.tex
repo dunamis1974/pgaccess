@@ -1,0 +1,42 @@
+\section{Reports}
+The \emph{Reports} tab is still in ALPHA stage.
+
+To create a report, you need to select a table or view from which the data will be retrieved.  Tables are recommended for those with slow connections to their database, ie. over the internet.
+
+After selecting the data source, the column names will be retrieved and referred to as \emph{fields} in the listbox designated for this purpose.  When you click on a field name, it will be displayed in the report canvas.  Clicking and dragging on the field name in the canvas allows you to move it and also modify its properties: font, justification, etc.
+
+Here's what's being worked on for the reports module:
+
+DONE:
+\begin{itemize}
+\item Allows for reports based on tables or views.
+\item Formulas are just Tcl evals, where column names are available as variables.
+  Try: concat \$colname1 \$colname2
+  Formulas can also be functions, but must begin with \emph{Function::}
+  Try: Function::get\_my\_function(\$colname1,\$colname2)
+\item Pictures must be gif or bmp files (and not stored in the database).
+\item Page header is the first record on a page, page footer is the last.
+\item Detail group is all the records that can fit on a page, row by row.
+\item Multiple pages.
+\item Printing puts the report into a Postscript file.
+  The pages printed are the ones in and between the boxes on preview mode.
+  You can also pipe the output by entering it in the dialog when prompted.
+  Try: |lpr
+  (This is the default if you go to print and don't enter a file name.)
+\item Page resizing can be done by typing in the Page size boxes.
+\item Report resizing can be done by typing in the Report size boxes and hitting
+enter or dragging the window and clicking in it with the mouse.
+\item Putting detail groups into columns when the page is wider than the report.
+\end{itemize}
+
+DOING:
+\begin{itemize}
+\item Allow for reports based on queries.
+\item Report headers and footers.
+\item Grouping and sorting based on database columns (aka fields).
+  The GUI is done, but the logic needs work.
+\item Subtotals.
+\item Drawing simple shapes like lines or circles.
+\item Font choice needs expanding.
+\item Postscript gets huge when you include pictures.  Maybe include a picture's data only once per report.
+\end{itemize}

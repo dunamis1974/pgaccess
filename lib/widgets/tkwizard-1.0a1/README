@@ -1,0 +1,204 @@
+tkwizard 1.0a1
+Copyright (c) 2001, Bryan Oakley
+All Rights Reservered
+
+Author: Bryan Oakley (oakley@bardo.clearlight.com)
+
+This code is freely distributable without restriction, and is 
+provided as-is with no warranty expressed or implied. 
+
+----
+
+Thank you for trying tkwizard. At present I don't have any formal
+documentation writen up, but hopefully the following will be enough to
+get you started.
+
+This code should work on all versions of tcl/tk from 8.0 onward.
+
+Install the files tkwizard.tcl and pkgIndex.tcl where a wish shell can
+find them. You can then use 'package require tkwizard' to load the
+code into an application.
+
+You can create a wizard interactively by running the script
+'tkwizthing.tcl'. It creates a wizard framework which you may
+later edit to include your custom content.
+
+To create a wizard, use "tkwizard::tkwizard". A "tkwizard" widget will
+be created. It is a toplevel window of class Wizard, and is initially
+withdrawn. 
+
+Here's the nutshell summary of creating a wizard:
+
+    # load the tkwizard package
+    package require tkwizard
+
+    # create the wizard widget
+    tkwizard::tkwizard .mywizard -title "My Wizard" 
+
+    # perform wizard-specific initialization
+    .mywizard eval {<initialization code...>}
+
+    # define wizard steps
+    .mywizard step "Step1" -layout basic {<code to create this step>}
+    .mywizard step "Step2" -layout basic {<code to create this step>}
+    .mywizard step "Step3" -layout basic {<code to create this step>}
+
+    # show the wizard
+    .mywizard show
+
+Each wizard step has a "layout" which defines the look of the
+step. Each layout will create a number of standard widgets that you
+can configure either directly or via a subcommand on the wizard
+widget.  This version of tkwizard ships with two layouts: basic and
+advanced. They only differ in how the title and icons are organized,
+so in that respect "advanced" isn't particularly advanced. 
+
+The most important widget is the "client area" widget. It is where all
+of the widgets for each step are created. You can get the path to this
+widget with the "widget" subcommand of the wizard widget. The wizard
+widget is available to the step via a local variable named 'this'. So,
+to get the widget path of the client area you can do the following:
+
+    .mywizard step step1 {
+        set clientArea [$this widget clientArea]
+        <create widgetst that are children of $clientArea>
+    }
+
+The code for each step is run whenever the step is to be shown. It
+will be run within a namespace unique to the wizard. If you need to
+create bindings that access data managed by a step you should use 
+[namespace code] or [namespace current] to fully qualify variable
+names. For example:
+
+    .mywizard step step1 {
+        variable wizardData
+        set c [$this widget clientArea]
+        entry $c.e1 -textvariable [namespace current]::wizardData(title)
+        pack $c.e1
+        ....
+    }
+
+* Wizard widget subcommands 
+
+The wizard widget has the following subcommands:
+
+    $this widget widgetName ?args?
+
+         with no args returns the widget path for the given widget.
+         With args, passes the arguments to the configure subcommand
+         of the widget. widgetName may be one of the following:
+         clientArea, pretext, posttext, title, subtitle, icon
+
+         Note that it is generally not a good idea to directly 
+         manipulate these widgets as their implementation may change
+         from layout to layout. However, having access to the actual
+         widget paths is intended to allow complete customization 
+         of each step, if required.
+
+    $this stepconfigure ?-title string? ?-subtitle string? 
+       ?-pretext string? ?-posttext string? ?-icon image?
+
+        Configures one of the predefined widgets. -pretext, -posttext, 
+        -title and -subtitle all take string arguments. -icon takes
+        the name of an image. 
+
+        Note that each layout is guaranteed (as much as possible) to
+        support these options, where or if the widget is visible is
+        up to each layout. The two layouts provided with this 
+        distribution will show all these widgets. 
+
+    $this cget option
+     
+        works like the cget option of traditional tk widgets
+
+    $this configure ?option value ...?
+
+        works like the configure option of traditional tk widgets
+
+ 
+    $this hide
+
+        withdraws the window (equivalent to wm withdraw $this)
+
+    $this step stepname ?-layout layout? body
+
+        defines a step named $stepname. The body is a block of
+        code that gets executed when the step is shown.
+
+    $this order ?-nocomplain? ?step step ...?
+
+        defines the order that the steps are shown. By default the
+        order is the order that the steps were defined. 
+
+        This will throw an error if a non-existent step is included
+        in the order, unless -nocomplain is specified.
+
+    $this namespace
+
+        returns the namespace that the wizard steps run in
+
+    $this eval script
+ 
+        evaluates the script in the wizard namespace
+
+
+The next and previous steps can be altered at runtime by changing the
+configuration values -nextstep and -prevstep (eg: $this configure
+-nextstep step4). Setting these to the empty string will cause the
+next or previous buttons to be disabled.
+
+The Finish button will be enabled if the configuration value -complete
+is set to 1. This value will automatically be set to one when the last
+step is shown. It can be set earlier to provide the ability to finish
+a wizard before all steps are completed. 
+
+The action to be performed when the user clicks on the Finish button
+should be defined by binding to the <<WizFinish>> virtual event. For
+example:
+
+    bind .wizthing <<WizFinish>> {myFinalizeCode}
+
+If 'myFinalizeCode' was defined within a '$this eval' block, you can
+create the binding like this:
+
+    bind .wizthing <<WizFinish>> {[%W namespace]::myFinalizeCode}
+
+Typically pressing the Finish button will cause the wizard to be
+withdrawn. This can be inhibited by having the binding do a "break",
+to prevent the class binding from firing.
+
+
+* Virtual Events
+
+The wizard will generate virtual events that you can bind to. The
+virtual events are <<WizHelp>>, <<WizNextStep>>, <<WizPrevStep>>,
+<<WizCancel>> and <<WizFinish>>. These are generated when their
+corresponding buttons are pressed, and are processed by class
+bindings.  (the help button will only appear if you add the flag 
+-showhelp 1 when creating the wizard.
+
+It is possible to nullify the effect of pressing a button by binding
+one of the events to the widget and returning a break. For example,
+you can use the binding to validate data from a previous step and
+prevent the next step from being shown if the data is invalid. See 
+tkwizthing.tcl for an example. 
+
+* Button States
+
+The button states are set automatically just prior to calling the code
+to draw a particular step. These settings can be overridden by the
+step. 
+
+* Customization
+
+Presently there isn't much support for changing the look of a wizard,
+beyond determining the paths of all internal widgets and tweaking them
+to meet your needs. However, you could create your own layout to get a
+specific look.
+
+I would like to eventually add support for -background, -foreground and
+-font options, as well as support for custom buttons on the bottom
+row. 
+
+
+
