@@ -90,19 +90,15 @@ Perhaps you don't want to stick a bunch of pga_* internal tables into your produ
 
 For bug reporting details, visit the pgaccess bugzilla at:
 
-    http://bugzilla.pgaccess.org
-
-Alternatively, you can email questions to:
-
-    support@pgaccess.org
+    https://github.com/dunamis1974/pgaccess/issues
 
 
 #==========================================================
 # New versions
 #==========================================================
 
-You will always find the latest version, including CVS instructions, at:
+You will always find the latest version at:
 
-    http://www.pgaccess.org/
+    https://github.com/dunamis1974/pgaccess
 
 
